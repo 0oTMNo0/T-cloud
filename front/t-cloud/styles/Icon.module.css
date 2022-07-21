@@ -1,0 +1,108 @@
+.container{
+    transition: 0.5s;
+    position: fixed;
+    width: 10em;
+    height: 10em;
+    transform: translate(-10%, -90%)
+    scale(0.3, 0.3);
+}
+.container span{
+    width: 6em;
+    height: 6em;
+    display: inline-block;
+    position: absolute;
+    transition: 0.5s;
+    border-radius: 50%;
+    background: #7951A8;
+}
+.container span.topLeft{
+    top: 3em;
+    left: 4em;
+    width: 5em;
+    height: 5em;
+}
+.container span.bottomLeft{
+    top: 6em;
+    left: 0;
+
+}
+.container span.middleTop{
+    width: 11em;
+    height: 11em;
+    left: 6em;
+}
+.container span.rightTop{
+    top: 6em;
+    left: 14em;
+}
+.container span.rightBottom{
+    border-radius: 0;
+    width: 14em;
+    height: 5em;
+    top:7em;
+    left: 2.8em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container:hover{
+    transition: 0.5s;
+}
+.container:hover span{
+    width: 5em;
+    height: 10em;
+    display: inline-block;
+    position: absolute;
+    transform: rotate(45deg);
+    margin: 0;
+}
+.container:hover span.topLeft{
+    top:0;
+    left:4em;
+    height: 5em;
+    border-radius: 0 2.5em 0 0;
+    transform: rotate(-45deg);
+    transition: 0.3s;
+    background-color: #7951A8;
+}
+.container:hover span.bottomLeft{
+    top:2.75em;
+    left:2.25em;
+    border-radius: 2.5em 0 0 0;
+    transform: rotate(-45deg);
+    transition: 0.3s;
+    background-color: #7951A8;
+}
+.container:hover span.middleTop{
+    left:9.3em;
+    top:-0.75em;
+    border-radius: 2.5em 0 0 0;
+    transition: 0.3s;
+    background-color: #7951A8;
+}
+.container:hover span.rightTop{
+    height: 5em;
+    border-radius:0 2.5em 0 0;
+    left:14.55em;
+    top: 3.55em;
+    transition: 0.3s;
+    background-color: #7951A8;
+}
+.container:hover span.rightBottom{
+    border-radius:0 0 2.5em 0;
+    left:9.25em;
+    top: 6.25em;
+    transition: 0.3s;
+    background-color: #7951A8;
+}
+
