@@ -1,8 +1,8 @@
 import React from 'react'
-import Icon from './component/Icon'
+import Icon from '../component/Icon'
 import { TbPoint } from "react-icons/tb"
 import { FaLinkedinIn , FaGithub , FaInstagram} from "react-icons/fa"
- import style from './../../styles/footer.module.css'
+ import style from './../../styles/Footer.module.css'
 const Footer = () => {
   return (
     <div className='bg-mybackground'>

@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Header from './layout/Header'
-import Footer from './layout/Footer'
-import MyCarousel from './layout/component/MyCarousel'
+import Header from '../src/layout/Header'
+import Footer from '../src/layout/Footer'
+import MyCarousel from '../src/component/MyCarousel'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import CardDefault from './layout/component/CardDefulte'
+import CardDefault from '../src/component/CardDefulte'
 
 const Home: NextPage = () => {
   

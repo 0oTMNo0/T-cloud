@@ -1,0 +1,29 @@
+/* .card{
+    position: relative;
+    width: 308px;
+    height: 480px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.cardContent{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: black;
+    transform: translateY(70px);
+    transition: transform 0.3s ease-in-out;
+}
+.cardContent::before{
+    content: "";
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 480x #fff;
+} */
