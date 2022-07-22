@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel } from 'flowbite-react'
+import { Carousel  } from 'flowbite-react'
 
 const MyCarousel = () => {
     return (

@@ -5,6 +5,10 @@ import Footer from '../src/layout/Footer'
 import MyCarousel from '../src/component/MyCarousel'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import CardDefault from '../src/component/CardDefulte'
+import vipText from '../src/asset/vipText.png'
+import Image from 'next/image'
+import { Button } from 'flowbite-react'
+
 
 const Home: NextPage = () => {
   
@@ -22,8 +26,10 @@ const Home: NextPage = () => {
 
       <main className='bg-mybackground pt-6'>
         <div className='w-full lg:w-2/3 md:w-3/4 mx-auto'>
-
         <MyCarousel/>
+        <div className='translate-x-[300%] translate-y-[-230%] absolute'>
+      <Button size='lg' color="purple">!بهترین باش</Button>
+      </div>
         </div>
         <div className='w-2/3 grid grid-cols-2 mx-auto sm:grid-cols-4 gap-4 mt-8 text-mywhite'>
           <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
@@ -65,18 +71,241 @@ const Home: NextPage = () => {
             <span className='flex items-center'>ورزشی</span>
             <img src="https://provoke.pk/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/_/m/_mg_6667a.jpg" className='w-auto h-full object-fill'/>
           </button>
+          
+        </div>
+        {/* scroll-shop-vip */}
+        <div className='w-full overflow-x-scroll flex items-center gap-4 mt-20 px-6 no-scrollbar' dir='rtl'>
 
+          <div>
+
+            <Image
+            layout='fixed'
+            src='/asset/vipText.png'
+            alt='vipText'
+            height={100}
+            width={100}
+            />
+            </div>
+          
+        <div>
           <CardDefault 
           brand='nike'
           label='dress'
           price={10}
           size={['S','M','L','XL']}
-          url='https://cdn.shopify.com/s/files/1/0317/9053/0696/products/sexy-ladies-silk-split-hem-nightgown-100-mulberry-silk-sleepwear-swing-collar-silk-dress-315906_300x.jpg?v=1656501987'
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
           />
-          
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div><div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+        </div>
+
+
+        {/* scroll-shop-help */}
+        <div className='w-full overflow-x-scroll flex items-center gap-4 mt-12 px-6 no-scrollbar' dir='rtl'>
+
+        <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div><div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+        </div>
+        {/* scroll-shop-offer */}
+        <div className='w-full overflow-x-scroll flex items-center gap-4 mt-12 px-6 no-scrollbar' dir='rtl'>
+
+        <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
+          <div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div><div>
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+          rate={4}
+          />
+          </div>
         </div>
       </main>
-
 
       <Footer />
     </div>

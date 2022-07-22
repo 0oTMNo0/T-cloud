@@ -6,11 +6,11 @@ const Header = () => {
   return (
     <header className='w-screen p-2 bg-myblack flex justify-between text-mywhite'>
       <div>
-        <button className='flex p-1 bg bg-myprimary-200 rounded-md gap-1'>
+        <button className='flex p-1 bg bg-myprimary-200 rounded-md gap-1 '>
           <div className='bg-myprimary-100 p-1 rounded-md'>
             <FaShoppingCart />
           </div>
-          <p>سبد خرید</p>
+          <p className='hidden sm:block'>سبد خرید</p>
         </button>
         {/* <button className='flex p-1 bg bg-myprimary-200 rounded gap-1'>
           <div className='bg-myprimary-100 p-1 rounded'>
@@ -23,11 +23,11 @@ const Header = () => {
 
 
         <form className='flex bg-myprimary-200 rounded-md group items-center'>
-          <input type='text' placeholder='search' className='hidden w-0 transition-[0.5s] bg-transparent outline-none active:outline-none border-none group-focus-within:w-52 group-focus-within:block h-7'/>
+          <input type='text' placeholder='search' className='focus:outline-none hidden w-0 transition-[0.5s] bg-transparent outline-none active:outline-none focus:border-none border-none group-focus-within:w-52 group-focus-within:block h-7 ring-0 focus:ring-0'/>
         <button className='grid place-content-center p-1 cursor-pointer' type='button'>
-          <div className='bg-myprimary-100 p-1 rounded-md'>
+          <span className='bg-myprimary-100 p-1 rounded-md'>
             <FaSearch />
-          </div>
+          </span>
         </button>
         </form>
 
