@@ -22,8 +22,8 @@ const Header = () => {
       <div className='flex items-center gap-2'>
 
 
-        <form className='flex bg-myprimary-200 rounded-md search group'>
-          <input type='text' placeholder='search' className='w-0 transition-[0.5s] bg-transparent outline-none border-none group-focus-within:w-52'/>
+        <form className='flex bg-myprimary-200 rounded-md group items-center'>
+          <input type='text' placeholder='search' className='hidden w-0 transition-[0.5s] bg-transparent outline-none active:outline-none border-none group-focus-within:w-52 group-focus-within:block h-7'/>
         <button className='grid place-content-center p-1 cursor-pointer' type='button'>
           <div className='bg-myprimary-100 p-1 rounded-md'>
             <FaSearch />

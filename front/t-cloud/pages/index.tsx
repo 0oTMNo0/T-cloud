@@ -1,11 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
-import styles from '../styles/Home.module.css'
-import Item from './layout/component/Item'
-import Carousel from './layout/component/carousel'
+import MyCarousel from './layout/component/MyCarousel'
+import {AiOutlineArrowLeft} from 'react-icons/ai'
+import CardDefault from './layout/component/CardDefulte'
 
 const Home: NextPage = () => {
   
@@ -21,10 +20,60 @@ const Home: NextPage = () => {
 
         <Header />
 
-      <main className='bg-mybackground'>
-        <div className='w-2/3 mx-auto'>
+      <main className='bg-mybackground pt-6'>
+        <div className='w-full lg:w-2/3 md:w-3/4 mx-auto'>
 
-        <Carousel/>
+        <MyCarousel/>
+        </div>
+        <div className='w-2/3 grid grid-cols-2 mx-auto sm:grid-cols-4 gap-4 mt-8 text-mywhite'>
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>زنانه</span>
+            <img src='https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-beautiful-girl-in-autumn-clothes-posing-in-studio-isolated-on-white-background_r0NLoh1nWZ_thumb.jpg' className='w-auto h-full object-fill'/>
+          </button>
+          
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>مردانه</span>
+            <img src='https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2332542.jpg' className='w-auto h-full object-fill'/>
+          </button>
+
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>شلوار</span>
+            <img src="https://www.menswearonline.co.uk/wp-content/uploads/2021/02/MEYER-GREY-TROUSER-WOOL.jpg" className='w-auto h-full object-fill'/>
+          </button>
+          
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>لباس</span>
+            <img src="https://thumbs.dreamstime.com/b/fashion-couple-16831775.jpg" className='w-auto h-full object-fill'/>
+          </button>
+
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>مجلسی</span>
+            <img src="https://media.istockphoto.com/photos/charming-couple-smiling-and-posing-facing-each-other-picture-id1180973477?k=20&m=1180973477&s=170667a&w=0&h=QOMQ-AzrZ7QGwOgMuyoLtVrBFIiVySzDR_l-luqcAsQ=" className='w-auto h-full object-fill'/>
+          </button>
+
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>کفش</span>
+            <img src="https://media.istockphoto.com/photos/black-fashion-sport-shoe-on-white-background-picture-id1337191336?k=20&m=1337191336&s=612x612&w=0&h=xURf4dAc6OC-SsXtYInwLw_GLhp0SdG_VWiPLFUgJQs=" className='w-auto h-full object-fill'/>
+          </button>
+
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>کاپشن</span>
+            <img src="https://i.pinimg.com/originals/92/15/0a/92150a3934008e6191353470768cc73d.jpg" className='w-auto h-full object-fill'/>
+          </button>
+
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+            <span className='flex items-center'>ورزشی</span>
+            <img src="https://provoke.pk/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/_/m/_mg_6667a.jpg" className='w-auto h-full object-fill'/>
+          </button>
+
+          <CardDefault 
+          brand='nike'
+          label='dress'
+          price={10}
+          size={['S','M','L','XL']}
+          url='https://cdn.shopify.com/s/files/1/0317/9053/0696/products/sexy-ladies-silk-split-hem-nightgown-100-mulberry-silk-sleepwear-swing-collar-silk-dress-315906_300x.jpg?v=1656501987'
+          />
+          
         </div>
       </main>
 

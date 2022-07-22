@@ -7,15 +7,15 @@ const Footer = () => {
   return (
     <div className='bg-mybackground'>
       <footer>
-        <div className='flex items-center flex-row-reverse'>
+        <div className='flex items-center justify-center flex-row-reverse'>
           <div className='w-full h-2 bg-myblack'></div>
-          <div className='w-44'>
-            <Icon />
+          <div className='w-44 translate-y-16'>
+            <Icon/>
           </div>
         </div>
 
 
-        <div className='w-screen border-b-8 border-myblack grid sm:grid-cols-4 p-8 grid-cols-1' dir='rtl'>
+        <div className='w-screen border-b-8 border-myblack grid sm:grid-cols-4 p-8 mt-[-8rem] grid-cols-1' dir='rtl'>
 
           <div>
             <p className='font-bold text-xl m-4'>اطلاعات</p>
@@ -210,24 +210,28 @@ const Footer = () => {
 
         </div>
         {/* socailMedia */}
-        <div className='w-screen p-6'>
-          <ul className={style.socialIcons}>
-            <li>
-              <a href='#'>
+        <div className='flex w-screen justify-center items-center gap-6 text-xl p-8'>
+
+
+              <a href='#' className='text-mywhite rounded-full bg-myprimary-100 place-items-center p-2 border-4
+              hover:bg-myprimary-200 transition-[duration-500] ease-in-out border-myprimary-100 
+              '>
                 <FaLinkedinIn />
               </a>
-            </li>
-            <li>
-              <a href='#'>
+
+              <a href='#' className='text-mywhite rounded-full bg-myprimary-100 place-items-center p-2 border-4
+              hover:bg-myprimary-200 transition-[duration-500] ease-in-out border-myprimary-100 
+              '>
                 <FaGithub />
               </a>
-            </li>
-            <li>
-              <a href='#'>
+
+
+              <a href='#' className='text-mywhite rounded-full bg-myprimary-100 place-items-center p-2 border-4
+              hover:bg-myprimary-200 transition-[duration-500] ease-in-out border-myprimary-100 
+              '>
                 <FaInstagram />
               </a>
-            </li>
-          </ul>
+
         </div>
       </footer>
     </div>

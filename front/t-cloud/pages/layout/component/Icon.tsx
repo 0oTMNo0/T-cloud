@@ -1,3 +1,5 @@
+
+import { type } from 'os'
 import React from 'react'
 import  style  from '../../../styles/Icon.module.css'
 

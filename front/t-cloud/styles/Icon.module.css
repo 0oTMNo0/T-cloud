@@ -1,6 +1,6 @@
 .container{
     transition: 0.5s;
-    position: fixed;
+    position: relative;
     width: 10em;
     height: 10em;
     transform: translate(-10%, -90%)
