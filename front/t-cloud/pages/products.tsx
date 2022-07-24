@@ -187,6 +187,14 @@ const products = () => {
               item
             }</div></Badge></button>)
         })}
+        {
+          filterSex !== undefined ?
+          <button onClick={()=>{
+            setFilterSex(undefined)
+          }
+          }><Badge color="purple"><div className='flex justify-between items-center'><MdCancel/>{filterSex ? 'زنانه' : 'مردانه'}</div></Badge></button>
+          : null
+        }
         
         </div>
 
