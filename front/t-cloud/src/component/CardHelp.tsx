@@ -38,7 +38,7 @@ type myCardProps = {
                         </div>
                 </div>
                 <div className='bg-white sm:translate-y-[-520px] translate-y-[-425px] w-full h-full opacity-0 group-hover:opacity-100 group-hover:bg-opacity-50 flex justify-center items-center pt-24'>
-                <Button color="purple" size='sm'>select option</Button>
+                <Button color="purple" size='md'>سفارش</Button>
                 </div>
                 <div className='relative sm:translate-y-[-760px] translate-y-[-570px]'>
                   <Image
