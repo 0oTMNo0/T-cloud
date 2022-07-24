@@ -3,16 +3,20 @@ import Head from 'next/head'
 import Header from '../src/layout/Header'
 import Footer from '../src/layout/Footer'
 import MyCarousel from '../src/component/MyCarousel'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import CardDefault from '../src/component/CardDefulte'
 import vipText from '../src/asset/vipText.png'
 import Image from 'next/image'
 import { Button } from 'flowbite-react'
+import CardVip from '../src/component/CardVip'
+import CardHelp from '../src/component/CardHelp'
+import Cardoffer from '../src/component/CardOffer'
+import Link from 'next/link'
 
 
 const Home: NextPage = () => {
-  
 
+  const testArray = [0,1,2,3,4,5,]
 
   return (
     <div>
@@ -22,56 +26,58 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <Header />
+      <Header />
 
       <main className='bg-mybackground pt-6'>
-        <div className='w-full lg:w-2/3 md:w-3/4 mx-auto'>
-        <MyCarousel/>
-        <div className='translate-x-[300%] translate-y-[-230%] absolute'>
-      <Button size='lg' color="purple">!بهترین باش</Button>
-      </div>
+        <div className='w-full lg:w-2/3 md:w-3/4 sm:w-4/5 mx-auto flex flex-col'>
+          <MyCarousel />
+          <div className=' translate-y-[-230%] self-center'>
+            <Link href='/products'>
+            <Button size='lg' color="purple">!بهترین باش</Button>
+            </Link>
+          </div>
         </div>
         <div className='w-2/3 grid grid-cols-2 mx-auto sm:grid-cols-4 gap-4 mt-8 text-mywhite'>
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>زنانه</span>
-            <img src='https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-beautiful-girl-in-autumn-clothes-posing-in-studio-isolated-on-white-background_r0NLoh1nWZ_thumb.jpg' className='w-auto h-full object-fill'/>
+            <img src='https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-beautiful-girl-in-autumn-clothes-posing-in-studio-isolated-on-white-background_r0NLoh1nWZ_thumb.jpg' className='w-auto h-full object-fill' />
           </button>
-          
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>مردانه</span>
-            <img src='https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2332542.jpg' className='w-auto h-full object-fill'/>
+            <img src='https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2332542.jpg' className='w-auto h-full object-fill' />
           </button>
 
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden hover:scale-95'>
             <span className='flex items-center'>شلوار</span>
-            <img src="https://www.menswearonline.co.uk/wp-content/uploads/2021/02/MEYER-GREY-TROUSER-WOOL.jpg" className='w-auto h-full object-fill'/>
+            <img src="https://www.menswearonline.co.uk/wp-content/uploads/2021/02/MEYER-GREY-TROUSER-WOOL.jpg" className='w-auto h-full object-fill' />
           </button>
-          
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>لباس</span>
-            <img src="https://thumbs.dreamstime.com/b/fashion-couple-16831775.jpg" className='w-auto h-full object-fill'/>
+            <img src="https://thumbs.dreamstime.com/b/fashion-couple-16831775.jpg" className='w-auto h-full object-fill' />
           </button>
 
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>مجلسی</span>
-            <img src="https://media.istockphoto.com/photos/charming-couple-smiling-and-posing-facing-each-other-picture-id1180973477?k=20&m=1180973477&s=170667a&w=0&h=QOMQ-AzrZ7QGwOgMuyoLtVrBFIiVySzDR_l-luqcAsQ=" className='w-auto h-full object-fill'/>
+            <img src="https://media.istockphoto.com/photos/charming-couple-smiling-and-posing-facing-each-other-picture-id1180973477?k=20&m=1180973477&s=170667a&w=0&h=QOMQ-AzrZ7QGwOgMuyoLtVrBFIiVySzDR_l-luqcAsQ=" className='w-auto h-full object-fill' />
           </button>
 
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>کفش</span>
-            <img src="https://media.istockphoto.com/photos/black-fashion-sport-shoe-on-white-background-picture-id1337191336?k=20&m=1337191336&s=612x612&w=0&h=xURf4dAc6OC-SsXtYInwLw_GLhp0SdG_VWiPLFUgJQs=" className='w-auto h-full object-fill'/>
+            <img src="https://media.istockphoto.com/photos/black-fashion-sport-shoe-on-white-background-picture-id1337191336?k=20&m=1337191336&s=612x612&w=0&h=xURf4dAc6OC-SsXtYInwLw_GLhp0SdG_VWiPLFUgJQs=" className='w-auto h-full object-fill' />
           </button>
 
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>کاپشن</span>
-            <img src="https://i.pinimg.com/originals/92/15/0a/92150a3934008e6191353470768cc73d.jpg" className='w-auto h-full object-fill'/>
+            <img src="https://i.pinimg.com/originals/92/15/0a/92150a3934008e6191353470768cc73d.jpg" className='w-auto h-full object-fill' />
           </button>
 
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
+          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
             <span className='flex items-center'>ورزشی</span>
-            <img src="https://provoke.pk/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/_/m/_mg_6667a.jpg" className='w-auto h-full object-fill'/>
+            <img src="https://provoke.pk/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/_/m/_mg_6667a.jpg" className='w-auto h-full object-fill' />
           </button>
-          
+
         </div>
         {/* scroll-shop-vip */}
         <div className='w-full overflow-x-scroll flex items-center gap-4 mt-20 px-6 no-scrollbar' dir='rtl'>
@@ -79,231 +85,97 @@ const Home: NextPage = () => {
           <div>
 
             <Image
-            layout='fixed'
-            src='/asset/vipText.png'
-            alt='vipText'
-            height={100}
-            width={100}
+              layout='fixed'
+              src='/asset/vipText.png'
+              alt='vipText'
+              height={150}
+              width={150}
             />
-            </div>
-          
-        <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
           </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
+
+          {
+            testArray.map((item, index) => {
+              return(
+                <div>
+            <CardVip
+              brand='nike'
+              label='dress'
+              price={10}
+              size={['S', 'M', 'L', 'XL']}
+              url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+              rate={4}
+            />
           </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div><div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
+              )})
+          }
         </div>
 
 
         {/* scroll-shop-help */}
         <div className='w-full overflow-x-scroll flex items-center gap-4 mt-12 px-6 no-scrollbar' dir='rtl'>
 
-        <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
           <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
+
+            <Image
+              layout='fixed'
+              src='/asset/helpText.png'
+              alt='vipText'
+              height={150}
+              width={150}
+            />
           </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
+
+          {
+            testArray.map((item, index) => {
+              return (
+                <div>
+            <CardHelp
+              brand='nike'
+              label='dress'
+              price={10}
+              size={['S', 'M', 'L', 'XL']}
+              url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+              rate={4}
+            />
           </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div><div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
+              )
+            })
+          }
+          
+
+
+
         </div>
         {/* scroll-shop-offer */}
         <div className='w-full overflow-x-scroll flex items-center gap-4 mt-12 px-6 no-scrollbar' dir='rtl'>
 
-        <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
           <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
+        <Image
+              layout='fixed'
+              src='/asset/offerText.png'
+              alt='vipText'
+              height={150}
+              width={150}
+            />
           </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
-          <div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div><div>
-          <CardDefault 
-          brand='nike'
-          label='dress'
-          price={10}
-          size={['S','M','L','XL']}
-          url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-          rate={4}
-          />
-          </div>
+          
+          {
+            testArray.map((item, index) => {
+              return(
+                <div>
+            <Cardoffer
+                oldPrice={20}
+                brand='nike'
+                label='dress'
+                price={10}
+                size={['S', 'M', 'L', 'XL']}
+                url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
+                rate={4}
+              />
+            </div>
+              )})
+          }
+            
         </div>
       </main>
 

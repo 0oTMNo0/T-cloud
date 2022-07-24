@@ -30,11 +30,31 @@ const Header = () => {
           </span>
         </button>
         </form>
-
-
-
-
+        <div className={style.dropmenu}>
         <FiMenu className='text-mywhite text-3xl' />
+        <ul className={style.dropdown}>
+          <li>
+            <a href='#'>
+              خانه
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              محصولات
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              مدیریت
+            </a>
+          </li>
+          <li>
+            <a href='#'>
+              درباره ما
+            </a>
+          </li>
+        </ul>
+        </div>
       </div>
     </header>
   )

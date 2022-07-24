@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card , Button } from 'flowbite-react'
-import style from '../../styles/CardDefault.module.css'
 import {FaStar} from 'react-icons/fa'
+import Image from 'next/image'
 
 
 type myCardProps = {
@@ -13,7 +13,7 @@ type myCardProps = {
     rate: number
   }
 
-    const CardDefault = (props: myCardProps) => {
+    const CardVip = (props: myCardProps) => {
         return (
                 <>
             <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded-xl">
@@ -40,24 +40,20 @@ type myCardProps = {
                 <div className='bg-white sm:translate-y-[-520px] translate-y-[-425px] w-full h-full opacity-0 group-hover:opacity-100 group-hover:bg-opacity-50 flex justify-center items-center pt-24'>
                 <Button color="purple" size='sm'>select option</Button>
                 </div>
+                <div className='relative sm:translate-y-[-760px] translate-y-[-570px]'>
+                  <Image
+                  layout='fixed'
+                  src='/asset/helpIcon.png'
+                  width={35}
+                  height={35}
+                  alt={props.brand} 
+                  className='object-cover object-center h-full'/>
+                </div>
             </div>
             </>
         )
 
     }
 
-    export default CardDefault
-// const CardDefulte = ({
-//     url,
-//     label,
-//     brand,
-//     price,
-//   }:myCardProps) => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
+    export default CardVip
 
-// export default CardDefulte
