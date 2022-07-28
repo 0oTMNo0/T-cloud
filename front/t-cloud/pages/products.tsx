@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../src/layout/Footer'
 import Header from '../src/layout/Header'
 import { FaSortAmountDownAlt } from 'react-icons/fa'
@@ -7,9 +7,25 @@ import { Badge, Dropdown } from 'flowbite-react'
 import {MdCancel} from 'react-icons/md'
 import CardDefault from '../src/component/CardDefulte'
 import CardVip from '../src/component/CardVip'
+import CardHelp from '../src/component/CardHelp'
+import Cardoffer from '../src/component/CardOffer'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCategories, fetchProducts } from '../src/redux/slice/productSlice'
 
 const products = () => {
-  const test=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+
+
+    const dispatch = useDispatch()
+    const productList = useSelector((state:any) => state.product.product)
+    const categoryList = useSelector((state:any) => state.product.category)
+    const [allBrand, setAllBrand] = useState<string[]>([])
+    const [allSize, setAllSize] = useState<string[]>([])
+    
+
+
+
+
   const [sortDropdown, setSortDropdown] = useState('گرانترین')
   const [filterCategory, setFilterCategory] = useState<string[]>(['همه'])
   const [filterBrand, setFilterBrand] = useState<string[]>(['all'])
@@ -17,6 +33,26 @@ const products = () => {
   const [filterSex, setFilterSex] = useState<boolean | undefined>(undefined)
 
 
+  useEffect(() => {
+    dispatch((fetchProducts()))
+    dispatch((fetchCategories()))
+}, [])
+
+useEffect(() => {
+  productList?.map((product:any) => {
+      if(!allBrand.includes(product.description)){
+        allBrand.push(product.description)
+      }
+    }
+    )
+    productList?.map((product:any) => {
+      product.options?.map((option:any) => {
+        if(!allSize.includes(option)){
+          allSize.push(option)
+        }
+      })
+      })
+}, [productList])
 
   const addFilterSize = (size: string) => {
     if (!filterSize.includes(size)) {
@@ -65,7 +101,7 @@ const products = () => {
 
       <main className='bg-mybackground'>
         <div className='flex justify-between p-6'>
-          <div className='flex gap-1 items-center hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+          <div className='flex gap-1 items-center hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
             <Dropdown
               label={<FaSortAmountDownAlt />}
               inline={true}
@@ -88,71 +124,57 @@ const products = () => {
 
           <div className='flex items-center gap-2'>
 
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label='قیمت' inline={true}>
                 <Dropdown.Item>
                   {/* <input type='number' placeholder='min' />
                   <input type='number' placeholder='max' /> */}
-
-
-
-
-
-
-
-
-
-
                 </Dropdown.Item>
 
 
               </Dropdown>
             </section>
 
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label='جنسیت' inline={true}>
                 <Dropdown.Item onClick={() => setFilterSex(true)}>مردانه</Dropdown.Item>
                 <Dropdown.Item onClick={() => setFilterSex(false)}>زنانه</Dropdown.Item>
               </Dropdown>
             </section>
 
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label='سایز' inline={true}>
-                <Dropdown.Item onClick={() => addFilterSize('s')}>S</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterSize('m')}>M</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterSize('l')}>L</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterSize('xl')}>XL</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterSize('xxl')}>XXL</Dropdown.Item>
+                {
+                  allSize.map((size:string) => {
+                    if(size !== 'ALL'){
+                      return <Dropdown.Item onClick={() => addFilterSize(size)}>{size}</Dropdown.Item>
+                    }
+                  })
+                }
               </Dropdown>
             </section>
 
               {/* filter brand by dropdown */}
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label='برند' inline={true}>
-                <Dropdown.Item onClick={() => addFilterBrand('nike')}>nike</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterBrand('puma')}>puma</Dropdown.Item>
-                <Dropdown.Item onClick={() => addFilterBrand('reebok')}>reebok</Dropdown.Item>
-
+                {
+                  allBrand?.map((item:string) => {
+                    return(
+                      <Dropdown.Item onClick={() => addFilterBrand(item)}>{item}</Dropdown.Item>
+                    )})
+                }
               </Dropdown>
             </section>
 
 
             {/* filter Category by dropdown */}
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label=' دسته بندی' inline={true}>
-
-                <Dropdown.Item onClick={() => addFilterCategory('لباس')}>لباس</Dropdown.Item>
-
-                <Dropdown.Item onClick={() => addFilterCategory('شلوار')}>شلوار</Dropdown.Item>
-
-                <Dropdown.Item onClick={() => addFilterCategory('کفش')}>کفش</Dropdown.Item>
-
-                <Dropdown.Item onClick={() => addFilterCategory('مجلسی')}>مجلسی</Dropdown.Item>
-
-                <Dropdown.Item onClick={() => addFilterCategory('ورزشی')}>ورزشی</Dropdown.Item>
-
-                <Dropdown.Item onClick={() => addFilterCategory('کاپشن')}>کاپشن</Dropdown.Item>
-
+                {
+                  categoryList?.map((category:any) => {
+                      return <Dropdown.Item onClick={() => addFilterCategory(category.name)}>{category.name}</Dropdown.Item>
+                  })
+                }
               </Dropdown>
             </section>
 
@@ -199,23 +221,59 @@ const products = () => {
         </div>
 
         <div className='grid grid-cols-3 md:grid-cols-4'>
-          {
-            test.map(item =>{
-              return(
-                <div className='flex justify-center items-center mb-4' dir='rtl'>
-                  <CardVip
-              brand='nike'
-              label='dress'
-              price={10}
-              size={['S', 'M', 'L', 'XL']}
-              url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-              rate={4}
-            />
-                </div>
 
-              )
-            })
+          {
+            productList?.map((item:any) => {
+              return (
+                <div className='flex justify-center items-center mb-4 z-0' dir='rtl'>
+                  {
+                    item.slug === 'vip' ?
+                    (
+                        <CardVip
+                    brand={item.description}
+                    label={item.name}
+                    price={item.price}
+                    size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                    url={item.main_image}
+                    rate={4}
+                    />
+                    ) : item.slug === 'help' ?
+                    (
+                      <CardHelp
+                    brand={item.description}
+                    label={item.name}
+                    price={item.price}
+                    size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                    url={item.main_image}
+                    rate={4}
+                    />
+                    ) : item.slug === 'off' ?
+                    (
+                      <Cardoffer
+                      oldPrice={item.price}
+                        brand={item.description}
+                        label={item.name}
+                        price={item.final_price}
+                        size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                        url={item.main_image}
+                        rate={4}
+                        />
+                    ) : (
+                      <CardDefault
+                    brand={item.description}
+                    label={item.name}
+                    price={item.price}
+                    size={(item.options.filter((item2:any) => item2 !== 'ALL'))}
+                    url={item.main_image}
+                    rate={4}
+                    />
+                    )
+                  }
+ 
+                </div>
+              )})
           }
+          
         </div>
 
       </main>

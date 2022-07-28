@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Card , Button } from 'flowbite-react'
 import style from '../../styles/CardDefault.module.css'
 import {FaStar} from 'react-icons/fa'
@@ -13,7 +13,7 @@ type myCardProps = {
     rate: number
   }
 
-    const CardDefault = (props: myCardProps) => {
+    const CardDefault:FC<myCardProps> = (props) => {
         return (
                 <>
             <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded-xl">
@@ -23,9 +23,9 @@ type myCardProps = {
                     <p>{props.brand}</p>
                     <p>{props.price}MT</p>
                   </div>
-                  <div className='flex justify-center items-center'>
-                    <p>{props.label}</p>
-                     </div>
+                  <p className='flex justify-center items-center whitespace-nowrap'>
+                    {props.label.slice(0,40)}...
+                  </p>
                     <div className='flex justify-between'>
                         <div className='flex gap-1 items-center'>
                           <p className='text-yellow-400'><FaStar/></p>
@@ -47,17 +47,4 @@ type myCardProps = {
     }
 
     export default CardDefault
-// const CardDefulte = ({
-//     url,
-//     label,
-//     brand,
-//     price,
-//   }:myCardProps) => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
 
-// export default CardDefulte

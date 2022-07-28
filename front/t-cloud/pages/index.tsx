@@ -12,11 +12,89 @@ import CardVip from '../src/component/CardVip'
 import CardHelp from '../src/component/CardHelp'
 import Cardoffer from '../src/component/CardOffer'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { json } from 'stream/consumers'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts, fetchCategories } from '../src/redux/slice/productSlice'
+
+
 
 
 const Home: NextPage = () => {
+  interface Icategory{
+    children: any,
+    featured: boolean,
+    icon: string,
+    id: number,
+    image: string,
+    name: string,
+    parent:any,
+    slug: string,
+  }
 
-  const testArray = [0,1,2,3,4,5,]
+  
+  interface Iproduct{
+    id: number;
+    attributes: string;
+    category: number;
+    description: string;
+    extra_information: string;
+    featured: boolean;
+    final_price: string;
+    images: string[];
+    main_image: string;
+    name: string;
+    options: string[];
+    price: string;
+    remaining: number;
+    slug: string | null;
+  }
+  
+  const dispatch = useDispatch()
+    const productList = useSelector((state:any) => state.product.product)
+    const categoryList = useSelector((state:any) => state.product.category)
+    useEffect(() => {
+        dispatch((fetchProducts()))
+        dispatch((fetchCategories()))
+    }, [])
+
+  // login and get token from server
+  // const [token, setToken] = useState('1467bb8db9c5d9d2f4511a869a34a3055f121af4');
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/user/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       username: 'admin',
+  //       password: 'pbkdf2_sha256$260000$DQhKx9N9kLUYefC1qPofcT$ulH8grSv8n8qerA24eYhqlBbiqMB52tX7SB6EBkYHqU='
+  //     })
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       //setToken(data.token); 
+  //       console.log(data,'hi')})
+  //     .catch(err => console.error(err));
+  // }, []);
+
+
+  // useEffect(() => {
+  //   if (token) {
+  //     fetch('http://localhost:8000/store/product', {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Token ${token}`
+  //       }
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => {setData(data); console.log(data)})
+  //       .catch(err => console.error(err));
+        
+  //   }
+  // }, [token]);
+
 
   return (
     <div>
@@ -38,45 +116,17 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className='w-2/3 grid grid-cols-2 mx-auto sm:grid-cols-4 gap-4 mt-8 text-mywhite'>
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>زنانه</span>
-            <img src='https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-beautiful-girl-in-autumn-clothes-posing-in-studio-isolated-on-white-background_r0NLoh1nWZ_thumb.jpg' className='w-auto h-full object-fill' />
-          </button>
 
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>مردانه</span>
-            <img src='https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2332542.jpg' className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden hover:scale-95'>
-            <span className='flex items-center'>شلوار</span>
-            <img src="https://www.menswearonline.co.uk/wp-content/uploads/2021/02/MEYER-GREY-TROUSER-WOOL.jpg" className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>لباس</span>
-            <img src="https://thumbs.dreamstime.com/b/fashion-couple-16831775.jpg" className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>مجلسی</span>
-            <img src="https://media.istockphoto.com/photos/charming-couple-smiling-and-posing-facing-each-other-picture-id1180973477?k=20&m=1180973477&s=170667a&w=0&h=QOMQ-AzrZ7QGwOgMuyoLtVrBFIiVySzDR_l-luqcAsQ=" className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>کفش</span>
-            <img src="https://media.istockphoto.com/photos/black-fashion-sport-shoe-on-white-background-picture-id1337191336?k=20&m=1337191336&s=612x612&w=0&h=xURf4dAc6OC-SsXtYInwLw_GLhp0SdG_VWiPLFUgJQs=" className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>کاپشن</span>
-            <img src="https://i.pinimg.com/originals/92/15/0a/92150a3934008e6191353470768cc73d.jpg" className='w-auto h-full object-fill' />
-          </button>
-
-          <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden'>
-            <span className='flex items-center'>ورزشی</span>
-            <img src="https://provoke.pk/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/_/m/_mg_6667a.jpg" className='w-auto h-full object-fill' />
-          </button>
+          {
+            categoryList?.map((item:Icategory, index:number) => {
+              return (
+                <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden shadow-none hover:shadow-myprimary-100 hover:shadow-lg' key={index}>
+                  <span className='flex items-center'>{item.name}</span>
+                  <img src={item.image} className='w-auto h-full object-fill' />
+                </button>
+              )
+            })
+          }
 
         </div>
         {/* scroll-shop-vip */}
@@ -94,20 +144,25 @@ const Home: NextPage = () => {
           </div>
 
           {
-            testArray.map((item, index) => {
-              return(
-                <div>
-            <CardVip
-              brand='nike'
-              label='dress'
-              price={10}
-              size={['S', 'M', 'L', 'XL']}
-              url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-              rate={4}
-            />
-          </div>
-              )})
+            productList?.map((item:Iproduct, index:number) => {
+              if(item.slug === 'vip'){
+                return (
+                  <div>
+                    <CardVip
+                      brand={item.description}
+                      label={item.name}
+                      price={parseFloat(item.price)}
+                      size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                      url={item.main_image}
+                      rate={4}
+                      />
+                  </div>
+                )
+              }
+            })
           }
+
+          
         </div>
 
 
@@ -124,25 +179,28 @@ const Home: NextPage = () => {
               width={150}
             />
           </div>
-
-          {
-            testArray.map((item, index) => {
-              return (
-                <div>
-            <CardHelp
-              brand='nike'
-              label='dress'
-              price={10}
-              size={['S', 'M', 'L', 'XL']}
-              url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-              rate={4}
-            />
-          </div>
-              )
-            })
-          }
           
 
+          {
+            productList?.map((item:Iproduct, index:number) => {
+              if(item.slug === 'help'){
+                return (
+                  <div>
+                    <CardHelp
+                      brand={item.description}
+                      label={item.name}
+                      price={parseFloat(item.price)}
+                      size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                      url={item.main_image}
+                      rate={4}
+                      />
+                  </div>
+                )
+              }
+            })
+          }
+
+        
 
 
         </div>
@@ -158,23 +216,27 @@ const Home: NextPage = () => {
               width={150}
             />
           </div>
-          
+
           {
-            testArray.map((item, index) => {
-              return(
-                <div>
-            <Cardoffer
-                oldPrice={20}
-                brand='nike'
-                label='dress'
-                price={10}
-                size={['S', 'M', 'L', 'XL']}
-                url='https://is4.revolveassets.com/images/up/2022/July/071122_rw_shops_weddingshop_r.jpg'
-                rate={4}
-              />
-            </div>
-              )})
+            productList?.map((item:Iproduct, index:number) => {
+              if(item.slug === 'off'){
+                return (
+                  <div>
+                    <Cardoffer
+                    oldPrice={parseFloat(item.price)}
+                      brand={item.description}
+                      label={item.name}
+                      price={parseFloat(item.final_price)}
+                      size={(item.options.filter((item2:string) => item2 !== 'ALL'))}
+                      url={item.main_image}
+                      rate={4}
+                      />
+                  </div>
+                )
+              }
+            })
           }
+          
             
         </div>
       </main>

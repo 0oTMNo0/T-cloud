@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Card , Button } from 'flowbite-react'
 import {FaStar} from 'react-icons/fa'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ type myCardProps = {
     rate: number
   }
 
-    const CardVip = (props: myCardProps) => {
+    const CardVip:FC<myCardProps> = (props) => {
         return (
                 <>
             <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded-xl">
