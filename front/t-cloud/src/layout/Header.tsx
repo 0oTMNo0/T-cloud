@@ -31,7 +31,7 @@ const Header = () => {
 
 
         <form className='flex bg-myprimary-200 rounded-md group items-center'>
-          <div className='absolute z-[11] w-52 bg-mywhite shadow-lg translate-x-[-200px] translate-y-[100px] max-h-56 overflow-y-auto flex flex-col no-scrollbar'>
+          <div className='hidden absolute z-[11] w-52 bg-mywhite shadow-lg translate-x-[0px] translate-y-[130px] max-h-56 overflow-y-auto flex-col no-scrollbar group-focus-within:flex'>
             {
               searchdata?.map((item, index) => {
                 return (
@@ -41,7 +41,6 @@ const Header = () => {
                       <div className='text-myprimary-100 flex flex-col' dir='rtl'>
                         <p>{item.description}</p>
                       <p className='text-xs text-gray-400'>{item.name}</p></div>
-                    
                   </div>
                 )
               })
@@ -50,11 +49,15 @@ const Header = () => {
           </div>
           <input type='text' placeholder='search' className='focus:outline-none hidden w-0 transition-[0.5s] bg-transparent outline-none active:outline-none focus:border-none border-none group-focus-within:w-52 group-focus-within:block h-7 ring-0 focus:ring-0'
           onChange={(e)=>{
-            setSearchData(
-              data?.filter(item=>{
-                return item.name.toLowerCase().includes((e.target.value).toLowerCase()) || item.description.toLowerCase().includes((e.target.value).toLowerCase())
-              })
-            );
+            if(e.target.value.length > 0){
+              setSearchData(
+                data?.filter(item=>{
+                  return item.name.toLowerCase().includes((e.target.value).toLowerCase()) || item.description.toLowerCase().includes((e.target.value).toLowerCase())
+                })
+              );
+            }else{
+              setSearchData([])
+            }
           }}
           />
           

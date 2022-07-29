@@ -116,14 +116,15 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className='w-2/3 grid grid-cols-2 mx-auto sm:grid-cols-4 gap-4 mt-8 text-mywhite'>
-
           {
             categoryList?.map((item:Icategory, index:number) => {
               return (
+                <Link href={`/products?category=${item.name}`} key={index}>
                 <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden shadow-none hover:shadow-myprimary-100 hover:shadow-lg' key={index}>
                   <span className='flex items-center'>{item.name}</span>
                   <img src={item.image} className='w-auto h-full object-fill' />
                 </button>
+                </Link>
               )
             })
           }
