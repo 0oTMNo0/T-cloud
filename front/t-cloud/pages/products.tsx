@@ -14,6 +14,7 @@ import { fetchCategories, fetchProducts } from '../src/redux/slice/productSlice'
 import { Menu, RangeSlider } from '@mantine/core';
 import {IoIosArrowDown} from 'react-icons/io'
 
+
 import { useRouter } from 'next/router'
 
 const products = () => {
@@ -34,19 +35,20 @@ const products = () => {
     remaining: number;
     slug: string | null;
   }
+  const test:Iproduct[]=[]
 
   const { query } = useRouter()
+  const mypath = useRouter()
+  //const test =useRouter()
    // if(query.category) {
   //   addFilterCategory(query.category)
   // }
 
 
-
-
   const dispatch = useDispatch()
   const productList = useSelector((state: any) => state.product.product)
   const categoryList = useSelector((state: any) => state.product.category)
-  
+
   const [allBrand, setAllBrand] = useState<string[]>([])
   const [allSize, setAllSize] = useState<string[]>([])
   const [pageSize, setPageSize] = useState(20)
@@ -81,7 +83,6 @@ const products = () => {
       })
     })
     //check if productList is fetched
-
     if(productList&&productList.length>0) {
       if(query.category) {
         addFilterCategory(query.category)
@@ -121,18 +122,27 @@ const products = () => {
     }
     //filter product by size
     if(filterSize[0] !== 'ALL'){
-      setProductListFilter(productListFilter.filter((product: any) => {
-        if (filterSize.includes(product.options)) {
-          return product
+      // setProductListFilter(productListFilter.filter((product: any) => {
+      //   if (filterSize.includes(product.options)) {
+      //     return product
+      //   }
+      // }
+      // ))
+
+      filterSize.forEach((size: string) => {
+        let mytest=productListFilter.filter((product: any) => {
+          if (product.options.includes(size.toUpperCase())) {
+            return product
+          }
         }
-      }
-      ))
-    }
+        )
+      })
+      setProductListFilter(test)
+
+  }
     //filter product by sex
     if(filterSex !==undefined)
     {
-      console.log(productList)
-      console.log(filterSex)
       setProductListFilter(productListFilter.filter((products:any)=>
         products.featured == filterSex
       ))
@@ -146,7 +156,7 @@ const products = () => {
       }
       ))
     }
-    setSortDropdown(sortDropdown)
+    //setSortDropdown(sortDropdown)
   }, [productList, rangeFilter, filterCategory, filterBrand, filterSize, filterSex])
 
   useEffect(() => {
@@ -199,11 +209,26 @@ const products = () => {
 
 
   function addFilterCategory (category: any)  {
+    let searchparam = new URLSearchParams(window.location.search)
     if (!filterCategory.includes(category)) {
       if (filterCategory.includes('ALL')) {
         const filterCategories = filterCategory.filter(item => item !== 'ALL')
         setFilterCategory([...filterCategories, category])
+      searchparam.delete('category')
+      searchparam.set('category', category)
+      mypath.push({
+        pathname: 'products',
+        search: searchparam.toString()
+      })
       }else{
+      searchparam.delete(
+        'category'
+      )
+      searchparam.set('category', category)
+      mypath.push({
+        pathname: 'products',
+        search: searchparam.toString()
+      })
       setFilterCategory([...filterCategory, category])}
     }
   }
@@ -296,6 +321,7 @@ const products = () => {
               </Dropdown>
             </section>
 
+            
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Dropdown label='سایز' inline={true}>
                 {
@@ -353,6 +379,7 @@ const products = () => {
                   setFilterBrand(filterBrand.filter(item2 => item2 !== item))
                   if (filterBrand.length === 0) {
                     setFilterBrand(['ALL'])
+                    console.log(filterBrand)
                   }
                 }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{item}</div></Badge></button>)
             })}
