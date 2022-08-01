@@ -1,40 +1,40 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import Footer from '../src/layout/Footer'
-import Header from '../src/layout/Header'
+import Footer from '../../src/layout/Footer'
+import Header from '../../src/layout/Header'
 import { FaSortAmountDownAlt } from 'react-icons/fa'
 import { Badge, Button, Dropdown } from 'flowbite-react'
 import { MdCancel } from 'react-icons/md'
-import CardDefault from '../src/component/CardDefulte'
-import CardVip from '../src/component/CardVip'
-import CardHelp from '../src/component/CardHelp'
-import Cardoffer from '../src/component/CardOffer'
+import CardDefault from '../../src/component/CardDefulte'
+import CardVip from '../../src/component/CardVip'
+import CardHelp from '../../src/component/CardHelp'
+import Cardoffer from '../../src/component/CardOffer'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCategories, fetchProducts } from '../src/redux/slice/productSlice'
+import { fetchCategories, fetchProducts } from '../../src/redux/slice/productSlice'
 import { Menu, RangeSlider } from '@mantine/core';
 import {IoIosArrowDown} from 'react-icons/io'
 
 
 import { useRouter } from 'next/router'
 
+interface Iproduct{
+  id: number;
+  attributes: string;
+  category: number;
+  description: string;
+  extra_information: string;
+  featured: boolean;
+  final_price: string;
+  images: string[];
+  main_image: string;
+  name: string;
+  options: string[];
+  price: string;
+  remaining: number;
+  slug: string | null;
+}
 const products = () => {
 
-  interface Iproduct{
-    id: number;
-    attributes: string;
-    category: number;
-    description: string;
-    extra_information: string;
-    featured: boolean;
-    final_price: string;
-    images: string[];
-    main_image: string;
-    name: string;
-    options: string[];
-    price: string;
-    remaining: number;
-    slug: string | null;
-  }
   const test:Iproduct[]=[]
 
   const { query } = useRouter()
@@ -217,7 +217,7 @@ const products = () => {
       searchparam.delete('category')
       searchparam.set('category', category)
       mypath.push({
-        pathname: 'products',
+        pathname: 'product',
         search: searchparam.toString()
       })
       }else{
@@ -226,7 +226,7 @@ const products = () => {
       )
       searchparam.set('category', category)
       mypath.push({
-        pathname: 'products',
+        pathname: 'product',
         search: searchparam.toString()
       })
       setFilterCategory([...filterCategory, category])}
@@ -282,14 +282,14 @@ const products = () => {
               }}>
                  جدیدترین</Dropdown.Item>
             </Dropdown>
-            <p>{sortDropdown}</p>
+            <p className='text-sm'>{sortDropdown}</p>
           </div>
 
           <div className='flex items-center gap-2'>
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Menu width={300}>
                 <Menu.Target>
-                  <button className='flex gap-2 items-center'>قیمت<IoIosArrowDown/></button>
+                  <button className='flex gap-2 items-center text-sm'>قیمت<IoIosArrowDown/></button>
                 </Menu.Target>
                 <Menu.Dropdown>
                 <Menu.Label>محدوده ی قیمت</Menu.Label>
@@ -314,7 +314,7 @@ const products = () => {
 
 
 
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-sm'>
               <Dropdown label='جنسیت' inline={true}>
                 <Dropdown.Item onClick={() => setFilterSex(true)}>مردانه</Dropdown.Item>
                 <Dropdown.Item onClick={() => setFilterSex(false)}>زنانه</Dropdown.Item>
@@ -322,7 +322,7 @@ const products = () => {
             </section>
 
             
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-sm'>
               <Dropdown label='سایز' inline={true}>
                 {
                   allSize.map((size: string) => {
@@ -335,7 +335,7 @@ const products = () => {
             </section>
 
             {/* filter brand by dropdown */}
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-sm'>
               <Dropdown label='برند' inline={true}>
                 {
                   allBrand?.map((item: string) => {
@@ -349,7 +349,7 @@ const products = () => {
 
 
             {/* filter Category by dropdown */}
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-sm'>
               <Dropdown label=' دسته بندی' inline={true}>
                 {
                   categoryList?.map((category: any) => {
@@ -420,6 +420,7 @@ const products = () => {
                     item.slug === 'vip' ?
                       (
                         <CardVip
+                          id={item.id}
                           brand={item.description}
                           label={item.name}
                           price={item.price}
@@ -430,6 +431,7 @@ const products = () => {
                       ) : item.slug === 'help' ?
                         (
                           <CardHelp
+                            id={item.id}
                             brand={item.description}
                             label={item.name}
                             price={item.price}
@@ -440,6 +442,7 @@ const products = () => {
                         ) : item.slug === 'off' ?
                           (
                             <Cardoffer
+                              id={item.id}
                               oldPrice={item.price}
                               brand={item.description}
                               label={item.name}
@@ -450,6 +453,7 @@ const products = () => {
                             />
                           ) : (
                             <CardDefault
+                              id={item.id}
                               brand={item.description}
                               label={item.name}
                               price={item.price}

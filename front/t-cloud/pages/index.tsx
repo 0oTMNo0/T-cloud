@@ -110,7 +110,7 @@ const Home: NextPage = () => {
         <div className='w-full lg:w-2/3 md:w-3/4 sm:w-4/5 mx-auto flex flex-col'>
           <MyCarousel />
           <div className=' translate-y-[-230%] self-center'>
-            <Link href='/products'>
+            <Link href='/product'>
             <Button size='lg' color="purple">!بهترین باش</Button>
             </Link>
           </div>
@@ -119,7 +119,7 @@ const Home: NextPage = () => {
           {
             categoryList?.map((item:Icategory, index:number) => {
               return (
-                <Link href={`/products?category=${item.name}`} key={index}>
+                <Link href={`/product?category=${item.name}`} key={index}>
                 <button className='bg-white hover:scale-95 w-full h-28 flex justify-between items-center text-myprimary-100 text-xl pl-2 md:pl-8 overflow-hidden shadow-none hover:shadow-myprimary-100 hover:shadow-lg' key={index}>
                   <span className='flex items-center'>{item.name}</span>
                   <img src={item.image} className='w-auto h-full object-fill' />
@@ -150,6 +150,7 @@ const Home: NextPage = () => {
                 return (
                   <div>
                     <CardVip
+                      id={item.id}
                       brand={item.description}
                       label={item.name}
                       price={parseFloat(item.price)}
@@ -188,6 +189,7 @@ const Home: NextPage = () => {
                 return (
                   <div>
                     <CardHelp
+                      id={item.id}
                       brand={item.description}
                       label={item.name}
                       price={parseFloat(item.price)}
@@ -224,6 +226,7 @@ const Home: NextPage = () => {
                 return (
                   <div>
                     <Cardoffer
+                      id={item.id}
                     oldPrice={parseFloat(item.price)}
                       brand={item.description}
                       label={item.name}
