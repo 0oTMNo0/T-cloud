@@ -27,7 +27,7 @@ const Header = () => {
 
 
 
-        <div className='absolute flex-col bg-myblack text-mywhite w-96 max-h-[400px] hidden group-focus-within:flex rounded-lg p-2 top-14'>
+        <div className='absolute flex-col bg-myblack text-mywhite w-80 sm:w-96 max-h-[400px] hidden group-focus-within:flex rounded-lg p-2 top-14'>
           
           <CartItem/>
 

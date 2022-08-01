@@ -52,28 +52,22 @@ const id = () => {
   const [PreSize, setPreSize] = useState<string | undefined>('')
 
   useEffect(() => {
-    if (productList.length === 0) {
+   // if (productList.length === 0) {
       dispatch(fetchProducts())
-    }
+    //}
   }, [])
-  useEffect(() => {
-    console.log(cartList)
-  }
-    , [cartList])
 
   const product = useMemo(() => {
     let myProduct: Iproduct | undefined = undefined
     myProduct = productList?.find((product: Iproduct) => product.id === id)
     setShowImage(myProduct?.main_image)
     return myProduct
-  }, [productList])
+  }, [productList, id])
 
   const recommendedProducts = useMemo(() => {
     const recommendedProducts = productList?.filter((product2: Iproduct) => product2.category === product?.category)
     return recommendedProducts
   }, [productList])
-
-
 
   return (
     <div>
