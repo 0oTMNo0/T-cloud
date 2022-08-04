@@ -11,13 +11,13 @@ import CardHelp from '../../src/component/CardHelp'
 import Cardoffer from '../../src/component/CardOffer'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategories, fetchProducts } from '../../src/redux/slice/productSlice'
-import { Menu, RangeSlider } from '@mantine/core';
-import {IoIosArrowDown} from 'react-icons/io'
+import { Menu, Notification, RangeSlider } from '@mantine/core';
+import { IoIosArrowDown } from 'react-icons/io'
 
 
 import { useRouter } from 'next/router'
 
-interface Iproduct{
+interface Iproduct {
   id: number;
   attributes: string;
   category: number;
@@ -35,12 +35,12 @@ interface Iproduct{
 }
 const products = () => {
 
-  const test:Iproduct[]=[]
+  const test: Iproduct[] = []
 
   const { query } = useRouter()
   const mypath = useRouter()
   //const test =useRouter()
-   // if(query.category) {
+  // if(query.category) {
   //   addFilterCategory(query.category)
   // }
 
@@ -52,20 +52,20 @@ const products = () => {
   const [allBrand, setAllBrand] = useState<string[]>([])
   const [allSize, setAllSize] = useState<string[]>([])
   const [pageSize, setPageSize] = useState(20)
-  const [rangeFilter, setRangeFilter] = useState<[number, number]>([0,100])
+  const [rangeFilter, setRangeFilter] = useState<[number, number]>([0, 100])
   const [productListFilter, setProductListFilter] = useState<Iproduct[]>([])
 
 
   const [sortDropdown, setSortDropdown] = useState('گرانترین')
-  const [filterCategory, setFilterCategory] = useState<string[]>(['ALL'])
-  const [filterBrand, setFilterBrand] = useState<string[]>(['ALL'])
-  const [filterSize, setFilterSize] = useState<string[]>(['ALL'])
+  const [filterCategory, setFilterCategory] = useState<string>('ALL')
+  const [filterBrand, setFilterBrand] = useState<string>('ALL')
+  const [filterSize, setFilterSize] = useState<string>('ALL')
   const [filterSex, setFilterSex] = useState<boolean | undefined>(undefined)
 
 
   useEffect(() => {
     dispatch((fetchProducts()))
-    dispatch((fetchCategories()))  
+    dispatch((fetchCategories()))
   }, [])
 
   useEffect(() => {
@@ -90,56 +90,30 @@ const products = () => {
   }, [productList])
 
 
-
-
-
-
-
+  function fullmyDATA() {
+    setProductListFilter(productList)
+  }
   useEffect(() => {
      setProductListFilter(productList)
     //find category id by name
-    let categoryId:number[] = []
+    let categoryId:number | undefined = undefined
     categoryList?.map((category: any) => {
       if (filterCategory.includes(category.name)) {
-        categoryId.push(category.id)
+        categoryId=category.id
       }
     })
     //filter product by category
-    if(categoryId.length >0){
-      setProductListFilter(productListFilter.filter((product: any) => {
-        if (categoryId.includes(product.category)) {
-          return product
-        }
-      }))
+    if(categoryId !== undefined) {
+      setProductListFilter(productListFilter.filter((product: any) => product.category === categoryId))
     }
     //filter product by brand
-    if(filterBrand[0] !== 'ALL'){
-      setProductListFilter(productListFilter.filter((product: any) => {
-        if (filterBrand.includes(product.description)) {
-          return product
-        }
-      }))
+    if(filterBrand !== 'ALL'){
+      setProductListFilter(productListFilter.filter((product: any) => product.description === filterBrand))
     }
     //filter product by size
-    if(filterSize[0] !== 'ALL'){
-      // setProductListFilter(productListFilter.filter((product: any) => {
-      //   if (filterSize.includes(product.options)) {
-      //     return product
-      //   }
-      // }
-      // ))
-
-      filterSize.forEach((size: string) => {
-        let mytest=productListFilter.filter((product: any) => {
-          if (product.options.includes(size.toUpperCase())) {
-            return product
-          }
-        }
-        )
-      })
-      setProductListFilter(test)
-
-  }
+    if(filterSize !== 'ALL'){
+      setProductListFilter(productListFilter.filter((product: any) => product.options?.includes(filterSize)))
+    }
     //filter product by sex
     if(filterSex !==undefined)
     {
@@ -156,7 +130,7 @@ const products = () => {
       }
       ))
     }
-    //setSortDropdown(sortDropdown)
+    setSortDropdown(sortDropdown)
   }, [productList, rangeFilter, filterCategory, filterBrand, filterSize, filterSex])
 
   useEffect(() => {
@@ -174,7 +148,7 @@ const products = () => {
         }
         ))
         break;
-        case 'نام':
+      case 'نام':
         setProductListFilter(productListSort.sort((a: any, b: any) => {
           if (a.description < b.description) {
             return -1
@@ -185,65 +159,52 @@ const products = () => {
           }
         }))
         break;
-        case 'جدیدترین':
+      case 'جدیدترین':
         setProductListFilter(productListSort.sort((a: any, b: any) => {
           return b.id - a.id
         }
         ))
-      }
-    },[sortDropdown])
-      
+    }
+  }, [sortDropdown])
 
-    
+
 
   const addFilterSize = (size: string) => {
-    if (!filterSize.includes(size)) {
-      if (filterSize.includes('ALL')) {
-        const filterSizes = filterSize.filter(item => item !== 'ALL')
-        setFilterSize([...filterSizes, size])
-      }else{
-        setFilterSize([...filterSize, size])
-      }
-    }
+    let searchparam = new URLSearchParams(window.location.search)
+    searchparam.delete('size')
+    searchparam.set('size', size)
+    mypath.push({
+      pathname: 'product',
+      search: searchparam.toString()
+    })
+    fullmyDATA()
+    setFilterSize(size)
   }
 
 
   function addFilterCategory (category: any)  {
     let searchparam = new URLSearchParams(window.location.search)
-    if (!filterCategory.includes(category)) {
-      if (filterCategory.includes('ALL')) {
-        const filterCategories = filterCategory.filter(item => item !== 'ALL')
-        setFilterCategory([...filterCategories, category])
-      searchparam.delete('category')
-      searchparam.set('category', category)
-      mypath.push({
-        pathname: 'product',
-        search: searchparam.toString()
-      })
-      }else{
-      searchparam.delete(
-        'category'
-      )
-      searchparam.set('category', category)
-      mypath.push({
-        pathname: 'product',
-        search: searchparam.toString()
-      })
-      setFilterCategory([...filterCategory, category])}
-    }
+    searchparam.delete('category')
+    searchparam.set('category', category)
+    mypath.push({
+      pathname: 'product',
+      search: searchparam.toString()
+    })
+    fullmyDATA()
+    setFilterCategory(category)
   }
 
 
   const addFilterBrand = (brand: string) => {
-    if (!filterBrand.includes(brand)) {
-      setFilterBrand([...filterBrand, brand])
-      if (filterBrand.includes('ALL')) {
-        const filterBrands = filterBrand.filter(item => item !== 'ALL')
-        setFilterBrand([...filterBrands, brand])
-      }else{
-        setFilterBrand([...filterBrand, brand])
-      }
-    }
+    let searchparam = new URLSearchParams(window.location.search)
+    searchparam.delete('brand')
+    searchparam.set('brand', brand)
+    mypath.push({
+      pathname: 'product',
+      search: searchparam.toString()
+    })
+    fullmyDATA()
+    setFilterBrand(brand)
   }
 
 
@@ -277,10 +238,10 @@ const products = () => {
                 setSortDropdown('ارزان ترین')
               }}>
                 ارزان ترین</Dropdown.Item>
-                <Dropdown.Item onClick={() => {
+              <Dropdown.Item onClick={() => {
                 setSortDropdown('جدیدترین')
               }}>
-                 جدیدترین</Dropdown.Item>
+                جدیدترین</Dropdown.Item>
             </Dropdown>
             <p className='text-sm'>{sortDropdown}</p>
           </div>
@@ -289,22 +250,22 @@ const products = () => {
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
               <Menu width={300}>
                 <Menu.Target>
-                  <button className='flex gap-2 items-center text-sm'>قیمت<IoIosArrowDown/></button>
+                  <button className='flex gap-2 items-center text-sm'>قیمت<IoIosArrowDown /></button>
                 </Menu.Target>
                 <Menu.Dropdown>
-                <Menu.Label>محدوده ی قیمت</Menu.Label>
+                  <Menu.Label>محدوده ی قیمت</Menu.Label>
                   <Menu.Item>
                     <RangeSlider color="dark" thumbSize={14} defaultValue={[1, 100]}
-                    value={rangeFilter}
-                    onChange={setRangeFilter}
-                    size='xs'
-                    marks={[
-                      { value: 10, label: '10MT' },
-                      { value: 30, label: '30MT' },
-                      { value: 50, label: '50MT' },
-                      { value: 70, label: '70MT' },
-                      { value: 90, label: '90MT' },
-                    ]}/>
+                      value={rangeFilter}
+                      onChange={setRangeFilter}
+                      size='xs'
+                      marks={[
+                        { value: 10, label: '10MT' },
+                        { value: 30, label: '30MT' },
+                        { value: 50, label: '50MT' },
+                        { value: 70, label: '70MT' },
+                        { value: 90, label: '90MT' },
+                      ]} />
                   </Menu.Item>
                   <Menu.Label></Menu.Label>
                 </Menu.Dropdown>
@@ -321,13 +282,13 @@ const products = () => {
               </Dropdown>
             </section>
 
-            
+
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-sm'>
               <Dropdown label='سایز' inline={true}>
                 {
                   allSize.map((size: string) => {
                     if (size !== 'ALL') {
-                      return <Dropdown.Item onClick={() => {addFilterSize(size)}}>{size}</Dropdown.Item>
+                      return <Dropdown.Item onClick={() => { addFilterSize(size) }}>{size}</Dropdown.Item>
                     }
                   })
                 }
@@ -340,7 +301,9 @@ const products = () => {
                 {
                   allBrand?.map((item: string) => {
                     return (
-                      <Dropdown.Item onClick={() => addFilterBrand(item)}>{item}</Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => addFilterBrand(item)}
+                      >{item}</Dropdown.Item>
                     )
                   })
                 }
@@ -353,7 +316,9 @@ const products = () => {
               <Dropdown label=' دسته بندی' inline={true}>
                 {
                   categoryList?.map((category: any) => {
-                    return <Dropdown.Item onClick={() => addFilterCategory(category.name)}>{category.name}</Dropdown.Item>
+                    return <Dropdown.Item
+                    onClick={() => {addFilterCategory(category.name)}}
+                    >{category.name}</Dropdown.Item>
                   })
                 }
               </Dropdown>
@@ -363,49 +328,50 @@ const products = () => {
         </div>
         <div className='flex justify-end px-6 gap-1 pb-4'>
           {
-            filterCategory.map(item => {
-              if (item !== 'ALL')
-                return (<button onClick={() => {
-                  setFilterCategory(filterCategory.filter(item2 => item2 !== item))
-                  if(filterCategory.length === 0){
-                    setFilterCategory(['ALL'])
-                  }
-                }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{item}</div></Badge></button>)
-            })}
+            filterCategory !== 'ALL' ?
+            (<button onClick={()=>{
+              setFilterCategory('ALL')
+              let searchparam = new URLSearchParams(window.location.search)
+              searchparam.delete('category')
+              searchparam.set('category', 'ALL')
+              mypath.push({
+                pathname: 'product',
+                search: searchparam.toString()
+              })
+            }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{filterCategory}</div></Badge></button>):null
+          }
+
           {
-            filterBrand.map(item => {
-              if (item !== 'ALL')
-                return (<button onClick={() => {
-                  setFilterBrand(filterBrand.filter(item2 => item2 !== item))
-                  if (filterBrand.length === 0) {
-                    setFilterBrand(['ALL'])
-                    console.log(filterBrand)
-                  }
-                }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{item}</div></Badge></button>)
-            })}
+            filterBrand !== 'ALL' ?
+              (<button onClick={() => {
+                setFilterBrand('ALL')
+                let searchparam = new URLSearchParams(window.location.search)
+                searchparam.delete('brand')
+                searchparam.set('brand', 'ALL')
+                mypath.push({
+                  pathname: 'product',
+                  search: searchparam.toString()
+                })
+              }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{filterBrand}</div></Badge></button>) : null}
           {
-            filterSize.map(item => {
-              if (item !== 'ALL')
-                return (<button onClick={() => {
-                  setFilterSize(filterSize.filter(item2 => item2 !== item))
-                  if(filterSize.length === 0){
-                    setFilterSize(['ALL'])
-                  }
-                }}><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{
-                  item === 's' ? 'S' :
-                    item === 'm' ? 'M' :
-                      item === 'l' ? 'L' :
-                        item === 'xl' ? 'XL' :
-                          item === 'xxl' ? 'XXL' :
-                            item
-                }</div></Badge></button>)
-            })}
+            filterSize !== 'ALL' && <button onClick={() => {
+              let searchparam = new URLSearchParams(window.location.search)
+              searchparam.delete('size')
+              searchparam.set('size', 'ALL')
+              mypath.push({
+                pathname: 'product',
+                search: searchparam.toString()
+              })
+              setFilterSize('ALL')
+            }
+            }><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{filterSize}</div></Badge></button>
+          }
           {
             filterSex !== undefined ?
               <button onClick={() => {
                 setFilterSex(undefined)
               }
-              }><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{filterSex ? 'مردانه':'زنانه'}</div></Badge></button>
+              }><Badge color="purple"><div className='flex justify-between items-center'><MdCancel />{filterSex ? 'مردانه' : 'زنانه'}</div></Badge></button>
               : null
           }
 
@@ -413,9 +379,9 @@ const products = () => {
 
         <div className='grid grid-cols-3 md:grid-cols-4'>
           {
-            productListFilter?.slice(0, pageSize).map((item: any) => {
+            productListFilter?.slice(0, pageSize).map((item: any,index:number) => {
               return (
-                <div className='flex justify-center items-center mb-4 z-0' dir='rtl'>
+                <div className='flex justify-center items-center mb-4 z-0' dir='rtl' key={index}>
                   {
                     item.slug === 'vip' ?
                       (
@@ -473,21 +439,21 @@ const products = () => {
         <div className='w-full flex justify-center items-center mt-6'>
           {
             productList?.length !== pageSize ?
-            (
-              <Button size='xl' color='purple' onClick={()=>{
-                if((pageSize+20)<productList.length){
-                  setPageSize(pageSize+20)
-                }else{
-                  setPageSize(productList.length)
-                }
-              }}>...بیشتر</Button>
-            ):null
+              (
+                <Button size='xl' color='purple' onClick={() => {
+                  if ((pageSize + 20) < productList.length) {
+                    setPageSize(pageSize + 20)
+                  } else {
+                    setPageSize(productList.length)
+                  }
+                }}>...بیشتر</Button>
+              ) : null
           }
         </div>
 
       </main>
 
-
+      
       <footer>
         <Footer />
       </footer>

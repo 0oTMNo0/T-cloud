@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Reducer } from "react";
 
 interface CartType {
-    id: number;
+    id: string;
+    productId:number;
     brand: string;
     name: string;
     size: string;

@@ -11,6 +11,8 @@ import CardDefault from '../../src/component/CardDefulte'
 import Cardoffer from '../../src/component/CardOffer'
 import CardHelp from '../../src/component/CardHelp'
 import { addToCart } from '../../src/redux/slice/cartSlice'
+import { useId } from '@mantine/hooks';
+
 
 interface Iproduct {
   id: number;
@@ -29,7 +31,8 @@ interface Iproduct {
   slug: string | null;
 }
 interface CartType {
-  id: number | undefined;
+  id:string;
+  productId: number | undefined;
   brand: string | undefined;
   name: string | undefined;
   size: string | undefined;
@@ -45,16 +48,16 @@ const id = () => {
   // const { query } = router
 
 
-  const id: number | undefined = +(router.query.id)
+  const id: number | undefined = +(router.query.id as string)
   const productList = useSelector((state: any) => state.product.product)
   const cartList = useSelector((state: any) => state.cart.cart)
   const [showImage, setShowImage] = useState<string | undefined>('')
   const [PreSize, setPreSize] = useState<string | undefined>('')
 
   useEffect(() => {
-   // if (productList.length === 0) {
+   if (productList.length === 0) {
       dispatch(fetchProducts())
-    //}
+    }
   }, [])
 
   const product = useMemo(() => {
@@ -68,6 +71,8 @@ const id = () => {
     const recommendedProducts = productList?.filter((product2: Iproduct) => product2.category === product?.category)
     return recommendedProducts
   }, [productList])
+
+
 
   return (
     <div>
@@ -158,7 +163,7 @@ const id = () => {
                 ) : null
             }
             <span className='text-myprimary-100'>{
-              (+(product?.final_price) * 1000000).toLocaleString('fa-IR')
+              (+(product?.final_price as string) * 1000000).toLocaleString('fa-IR')
             } تومان</span>
 
           </div>
@@ -169,11 +174,12 @@ const id = () => {
             onClick={() => {
               if (PreSize !== '') {
                 const cart: CartType = {
-                  id: product?.id,
+                  id: useId((product?.id as number)?.toString()+PreSize),
+                  productId: product?.id,
                   brand: product?.description,
                   name: product?.name,
                   size: PreSize,
-                  price: +(product?.final_price),
+                  price: +(product?.final_price as string),
                   image: product?.main_image,
                   quantity: 1
                 }
@@ -211,9 +217,9 @@ const id = () => {
               <img className='border-[1px] border-myprimary-100 object-cover object-center rounded w-full' src={product?.main_image} alt='vip' />
             </button>
             {
-              product?.images.map((item: any) => {
+              product?.images.map((item: any ,index:number) => {
                 return (
-                  <button onClick={() => setShowImage(item)}>
+                  <button onClick={() => setShowImage(item)} key={index}>
                     <img className='border-[1px] border-myprimary-100 object-cover object-center rounded w-full' src={item} alt='vip' />
                   </button>
                 )
@@ -229,11 +235,11 @@ const id = () => {
         </p>
         <div className='overflow-x-scroll flex items-center gap-4 px-6 no-scrollbar'>
           {
-            recommendedProducts?.map((item: any) => {
+            recommendedProducts?.map((item: any ,index:number) => {
               return (
               item.slug === 'vip' ?
                 (
-                  <div>
+                  <div key={index}>
                     <CardVip
                       id={item.id}
                       brand={item.description}
@@ -246,7 +252,7 @@ const id = () => {
                   </div>
                 ) : item.slug === 'help' ?
                   (
-                    <div>
+                    <div key={index}>
                       <CardHelp
                         id={item.id}
                         brand={item.description}
@@ -259,7 +265,7 @@ const id = () => {
                     </div>
                   ) : item.slug === 'off' ?
                     (
-                      <div>
+                      <div key={index}>
                         <Cardoffer
                           id={item.id}
                           oldPrice={item.price}
@@ -272,7 +278,7 @@ const id = () => {
                         />
                       </div>
                     ) : (
-                      <div>
+                      <div key={index}>
                         <CardDefault
                           id={item.id}
                           brand={item.description}
