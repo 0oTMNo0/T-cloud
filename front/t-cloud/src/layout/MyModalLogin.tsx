@@ -1,10 +1,11 @@
 import { Input, Modal, Notification, NumberInput, PasswordInput, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { Button, Label, Toast } from 'flowbite-react'
-import { Cookies } from 'next/dist/server/web/spec-extension/cookies'
+// import { Cookies } from 'next/dist/server/web/spec-extension/cookies'
 import Image from 'next/image'
 import React, { FC, useEffect, useState } from 'react'
 import { MdError } from 'react-icons/md'
+import Cookies from 'js-cookie'
 
 type MyModaltype = {
   opened: boolean
@@ -15,37 +16,6 @@ const MyModal: FC<MyModaltype> = (props) => {
   const [token, setToken] = useState('');
   const [openNoti, setOpenNoti] = useState<boolean>(false)
   const [page, setPage] = useState<boolean>(true)
-
-
-  // if(document.cookie.includes('token')){
-  //   //setToken(document.cookie.split('token=')[1].split(';')[0])
-  //   //setToken(document.cookie.split('token=')[1])
-  //   console.log(document.cookie.split('token=')[1].split(';')[0])
-  //   console.log(document.cookie.split('token=')[1])
-  // }
-
-  // check cookie for token
-  // if(document.cookie.includes('token')){
-  // console.log(document.cookie.split('token=')[1].split(';')[0])
-  // }
-  // get username with token in cookie
-  // if(document.cookie.includes('token')){
-  //   fetch('http://localhost:8000/user/getUser', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer ' + document.cookie.split('token=')[1].split(';')[0]
-  //     }
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log(data)
-  //     }
-  //     )
-  //     .catch(err => console.error(err));
-  // }
-
-
 
   useEffect(() => {
     setOpened(props.opened)
@@ -93,37 +63,41 @@ const MyModal: FC<MyModaltype> = (props) => {
       .then(data => {
         setToken(data.token);
         console.log(data)
-        document.cookie = 'token=' + data.token;
-        setOpened(false)
+        Cookies.set('token', data.token);
+
         props.onClose(false)
         if(data.status === 'failed'){
           setOpenNoti(true)
+        }else{
+          setOpened(false)
         }
       })
-      // .finally(() => {setOpenNoti(true)})
-      // .catch(err => { setOpenNoti(true) });
   }
 
 
+
+
   function handlesubmitRegister(values: any) {
-    setOpenNoti(true)
-    // fetch('http://localhost:8000/user/register/', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     username: values.name,
-    //     password: values.password
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setToken(data.token);
-    //     document.cookie = 'token=' + data.token;
-    //   }
-    //   )
-    //   .catch(setOpenNoti(true));
+    fetch('http://localhost:8000/user/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: values.name,
+        password: values.password
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        // setToken(data.token);
+        // Cookies.set('token', data.token);
+        setPage(true)
+        if(data.status === 'failed'){
+          setOpenNoti(true)
+        }
+      }
+      )
   }
 
 
@@ -230,8 +204,6 @@ const MyModal: FC<MyModaltype> = (props) => {
                 </div>
               ) : null
             }
-
-
 
           </Modal>)
           : (

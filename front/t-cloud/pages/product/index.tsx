@@ -35,14 +35,10 @@ interface Iproduct {
 }
 const products = () => {
 
-  const test: Iproduct[] = []
+  // const test: Iproduct[] = []
 
   const { query } = useRouter()
   const mypath = useRouter()
-  //const test =useRouter()
-  // if(query.category) {
-  //   addFilterCategory(query.category)
-  // }
 
 
   const dispatch = useDispatch()
@@ -53,8 +49,8 @@ const products = () => {
   const [allSize, setAllSize] = useState<string[]>([])
   const [pageSize, setPageSize] = useState(20)
   const [rangeFilter, setRangeFilter] = useState<[number, number]>([0, 100])
-  const [productListFilter, setProductListFilter] = useState<Iproduct[]>([])
 
+  const [productListFilter, setProductListFilter] = useState<Iproduct[]>([])
 
   const [sortDropdown, setSortDropdown] = useState('گرانترین')
   const [filterCategory, setFilterCategory] = useState<string>('ALL')
@@ -93,6 +89,7 @@ const products = () => {
   function fullmyDATA() {
     setProductListFilter(productList)
   }
+  
   useEffect(() => {
      setProductListFilter(productList)
     //find category id by name
@@ -180,7 +177,6 @@ const products = () => {
     fullmyDATA()
     setFilterSize(size)
   }
-
 
   function addFilterCategory (category: any)  {
     let searchparam = new URLSearchParams(window.location.search)

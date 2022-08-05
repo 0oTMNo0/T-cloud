@@ -174,7 +174,7 @@ const id = () => {
             onClick={() => {
               if (PreSize !== '') {
                 const cart: CartType = {
-                  id: useId((product?.id as number)?.toString()+PreSize),
+                  id: useId((product?.id  as number)?.toString()+PreSize),
                   productId: product?.id,
                   brand: product?.description,
                   name: product?.name,
