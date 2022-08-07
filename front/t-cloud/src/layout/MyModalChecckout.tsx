@@ -20,6 +20,7 @@ const MyModalChecckout:FC<MyModaltype> = (props) => {
     const [discount, setDiscount] = useState(false)
     const [myTotalPrice, setMyTotalPrice] = useState<number>(props.totalPrice)
     const [discountValue, setDiscountValue] = useState('')
+
     useEffect(() => {
         setOpened(props.opened)
       }
@@ -33,9 +34,9 @@ const MyModalChecckout:FC<MyModaltype> = (props) => {
             name: (value) => (value.length < 4 ? 'Name must have at least 4 letters' : null),
           },
         });
-      
-  return (
-    
+
+        
+  return (    
       <Modal
             size='lg'
             opened={opened}
@@ -48,7 +49,6 @@ const MyModalChecckout:FC<MyModaltype> = (props) => {
 
                 <Icon/>
             </span>
-                
                   {
                     props.totalPrice === myTotalPrice ?
                     (
