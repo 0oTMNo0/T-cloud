@@ -81,24 +81,32 @@ const Header = () => {
           <FiMenu className='text-mywhite text-3xl' />
           <ul className={style.dropdown}>
             <li>
+              <Link href='/'>
               <a href='#'>
                 خانه
               </a>
+              </Link>
             </li>
             <li>
+              <Link href='/product'>
               <a href='#'>
                 محصولات
               </a>
+              </Link>
             </li>
             <li>
+              <Link href='/'>
               <a href='#'>
                 مدیریت
               </a>
+              </Link>
             </li>
             <li>
+              <Link href='/'>
               <a href='#'>
                 درباره ما
               </a>
+              </Link>
             </li>
           </ul>
         </div>
