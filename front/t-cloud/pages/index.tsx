@@ -58,44 +58,6 @@ const Home: NextPage = () => {
         dispatch((fetchCategories()))
     }, [])
 
-  // login and get token from server
-  // const [token, setToken] = useState('1467bb8db9c5d9d2f4511a869a34a3055f121af4');
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/user/login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       username: 'admin',
-  //       password: 'pbkdf2_sha256$260000$DQhKx9N9kLUYefC1qPofcT$ulH8grSv8n8qerA24eYhqlBbiqMB52tX7SB6EBkYHqU='
-  //     })
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       //setToken(data.token); 
-  //       console.log(data,'hi')})
-  //     .catch(err => console.error(err));
-  // }, []);
-
-
-  // useEffect(() => {
-  //   if (token) {
-  //     fetch('http://localhost:8000/store/product', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Token ${token}`
-  //       }
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {setData(data); console.log(data)})
-  //       .catch(err => console.error(err));
-        
-  //   }
-  // }, [token]);
-
-
   return (
     <div>
       <Head>
