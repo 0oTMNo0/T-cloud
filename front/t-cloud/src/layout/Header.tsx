@@ -1,5 +1,6 @@
 
 import { Button } from '@mantine/core'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
@@ -7,14 +8,26 @@ import { FiMenu } from 'react-icons/fi'
 import CartItem from '../component/CartItem'
 import style from './../../styles/Header.module.css'
 const Header = () => {
+
+
   const [data, setData] = useState<any[]>([]);
   const [searchdata, setSearchData] = useState<any[]>([]);
+  const [mycookie, setMyCookie] = useState<string | null | undefined>();
+
+
+
   useEffect(() => {
     fetch('http://localhost:8000/store/product')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(err => console.error(err));
   }, []);
+  useEffect(() => {
+    setMyCookie(Cookies.get('token'));
+  }
+    , []);
+  // const mycookie = Cookies.get('token')
+
   return (
     <header className='w-screen p-2 bg-myblack flex justify-between text-mywhite'>
       <div className='group'>
@@ -28,8 +41,8 @@ const Header = () => {
 
 
         <div className='absolute flex-col bg-myblack text-mywhite w-80 sm:w-96 max-h-[400px] hidden group-focus-within:flex rounded-lg p-2 top-14 z-20'>
-          
-          <CartItem/>
+
+          <CartItem />
 
         </div>
 
@@ -43,12 +56,12 @@ const Header = () => {
               searchdata?.map((item, index) => {
                 return (
                   <Link href={`/product/${item.id}`}>
-                  <button className='flex justify-between items-center p-2 hover:bg-purple-300 z-20' key={index}>
-                    <img src={item.main_image} alt='product' className='w-8 h-10' />
-                    <div className='text-myprimary-100 flex flex-col' dir='rtl'>
-                      <p>{item.description}</p>
-                      <p className='text-xs text-gray-400'>{item.name}</p></div>
-                  </button>
+                    <button className='flex justify-between items-center p-2 hover:bg-purple-300 z-20' key={index}>
+                      <img src={item.main_image} alt='product' className='w-8 h-10' />
+                      <div className='text-myprimary-100 flex flex-col' dir='rtl'>
+                        <p>{item.description}</p>
+                        <p className='text-xs text-gray-400'>{item.name}</p></div>
+                    </button>
                   </Link>
                 )
               })
@@ -82,30 +95,34 @@ const Header = () => {
           <ul className={style.dropdown}>
             <li>
               <Link href='/'>
-              <a href='#'>
-                خانه
-              </a>
+                <a href='#'>
+                  خانه
+                </a>
               </Link>
             </li>
             <li>
               <Link href='/product'>
-              <a href='#'>
-                محصولات
-              </a>
+                <a href='#'>
+                  محصولات
+                </a>
               </Link>
             </li>
+            {
+              mycookie ? (
+                <li>
+                  <Link href='/manager'>
+                    <a href='#'>
+                      مدیریت
+                    </a>
+                  </Link>
+                </li>)
+                : null
+            }
             <li>
               <Link href='/'>
-              <a href='#'>
-                مدیریت
-              </a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-              <a href='#'>
-                درباره ما
-              </a>
+                <a href='#'>
+                  درباره ما
+                </a>
               </Link>
             </li>
           </ul>

@@ -188,10 +188,7 @@ const id = () => {
               }}
             }
           >افزودن به سبد خرید</Button>
-
-
-
-
+          
           <div className='flex justify-evenly w-full sm:w-3/4 md:w-2/4 lg:w-2/5'>
             <Tooltip content="ضمانت اصل بودن کالا">
               <Image src='/asset/securebrand.png' width={64} height={64} layout='fixed' />

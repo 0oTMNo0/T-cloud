@@ -11,6 +11,7 @@ type MyModaltype = {
   opened: boolean
   onClose: any
 }
+
 const MyModal: FC<MyModaltype> = (props) => {
   const [opened, setOpened] = useState(false)
   const [token, setToken] = useState('');
