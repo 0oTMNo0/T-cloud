@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Dropdown } from 'flowbite-react'
 import Cookies from 'js-cookie'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMangerOrder from '../../src/component/CardMangerOrder'
 import CardMangerProduct from '../../src/component/CardMangerProduct'
@@ -15,15 +15,17 @@ import { fetchCategories, fetchProducts } from '../../src/redux/slice/productSli
 const index = () => {
 
     const dispatch = useDispatch();
-    const [pageProduct, setPageProduct] = React.useState<boolean>(true);
-    const [productId , setProductId] = React.useState<number | undefined>();
+    const [pageProduct, setPageProduct] = useState<boolean>(true);
+    const [productId, setProductId] = useState<number | undefined>();
+    const [order, setOrder] = useState<any>();
+
     const productList = useSelector((state: any) => state.product.product)
     const categoryList = useSelector((state: any) => state.product.category)
 
     useEffect(() => {
         dispatch((fetchProducts()))
         dispatch((fetchCategories()))
-      }, [])
+    }, [])
 
     useEffect(() => {
         fetch('http://localhost:8000/store/order'
@@ -60,7 +62,7 @@ const index = () => {
                     <div className=' absolute translate-y-[-260px]'>
                         <Icon />
                     </div>
-                    <div className='h-[430px] bg-mywhite w-full overflow-x-hidden overflow-y-scroll no-scrollbar rounded-l-md'>
+                    <div className='h-[430px] bg-mywhite w-full overflow-y-scroll no-scrollbar rounded-l-md'>
 
                         {pageProduct ?
                             (
@@ -76,28 +78,42 @@ const index = () => {
                                     </thead>
                                     <tbody>
                                         {productList?.map((product: any) => (
-                                            <tr className='odd:bg-myprimary-200 odd:bg-opacity-25 hover:scale-105 border-myprimary-100' onClick={() => {
+                                            <tr className='odd:bg-myprimary-200 odd:bg-opacity-25 hover:border-b-myprimary-200 border-2 border-transparent cursor-context-menu' onClick={() => {
                                                 setProductId(product.id)
                                             }}>
-                                                <td className='w-3/12 text-center'>{
+                                                <td className='w-3/12 text-right'>{
                                                     product.options?.map((size: any) => (
-                                                        size+' '
+                                                        size + ' '
                                                     ))
                                                 }</td>
                                                 <td className='w-1/12 text-center'>{
                                                     categoryList?.find((category: any) => category.id === product.category)?.name
                                                 }</td>
                                                 <td className='w-1/12 text-center'>{
-                                                     product.featured? 'مردانه':'زنانه'
+                                                    product.featured ? 'مردانه' : 'زنانه'
                                                 }</td>
                                                 <td className='w-1/12 text-center'>{product.final_price}</td>
-                                                <td className='w-6/12 text-center whitespace-nowrap text-ellipsis'>{product.name}</td>
+                                                <td className='w-6/12 text-right whitespace-nowrap text-ellipsis'>{product.name}</td>
                                             </tr>
                                         ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <table className='w-full'>
+                                    <thead className='rounded'>
+                                        <tr className='bg-mywhite'>
+                                            <td className='w-1/12 text-center'>شماره سفارش</td>
+                                            <td className='w-1/12 text-center'>کاربر</td>
+                                            <td className='w-4/12 text-center'>تاریخ سفارش</td>
+                                            <td className='w-2/12 text-center'>شماره آدرس</td>
+                                            <td className='w-3/12 text-center'>وضعیت</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
                                     </tbody>
                                 </table>
-                            ) : null}
+                            )}
                     </div>
                 </section>
                 <section className='w-2/5'>
@@ -140,3 +156,5 @@ const index = () => {
 }
 
 export default index
+
+
