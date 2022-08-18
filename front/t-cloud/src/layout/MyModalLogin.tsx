@@ -23,6 +23,7 @@ const MyModal: FC<MyModaltype> = (props) => {
   }
     , [props.opened])
 
+
   const form = useForm({
     initialValues: {
       name: 'say', password: 'hello',

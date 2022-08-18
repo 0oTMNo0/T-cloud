@@ -12,6 +12,7 @@ import Icon from '../../src/component/Icon'
 import Header from '../../src/layout/Header'
 import { fetchCategories, fetchProducts } from '../../src/redux/slice/productSlice'
 import Footer from '../../src/layout/Footer'
+import MyModalAddProduct from '../../src/layout/MyModalAddProduct'
 // import { Badge, Button, Dropdown } from 'flowbite-react'
 
 const index = ({ orderList }: any) => {
@@ -20,6 +21,7 @@ const index = ({ orderList }: any) => {
     const [pageProduct, setPageProduct] = useState<boolean>(true);
     const [productId, setProductId] = useState<number | undefined>();
     const [order, setOrder] = useState<any>();
+    const [openModal, setOpenModal] = useState<boolean>(false);
 
     const productList = useSelector((state: any) => state.product.product)
     const categoryList = useSelector((state: any) => state.product.category)
@@ -85,7 +87,10 @@ const index = ({ orderList }: any) => {
                                         ))}
                                     </tbody>
                                 </table>
-                                <button className='absolute bg-myprimary-200 hover:bg-myprimary-100 text-white font-bold py-2 px-4 rounded-full top-[560px] left-10' onClick={() => {}}>+</button>
+                                <button className='absolute bg-myprimary-200 hover:bg-myprimary-100 text-white font-bold py-2 px-4 rounded-full top-[560px] left-10' onClick={() => {
+                                    setOpenModal(true)
+                                    console.log(openModal)
+                                }}>+</button>
                                 </>
                             ) : (
                                 <table className='w-full'>
@@ -152,6 +157,8 @@ const index = ({ orderList }: any) => {
 
                 </section>
             </main>
+            
+            <MyModalAddProduct opened={openModal} onClose={(value: boolean) => { setOpenModal(value) }} />
             <Footer/>
         </div>
     )
