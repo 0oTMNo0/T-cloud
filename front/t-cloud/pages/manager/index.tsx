@@ -1,4 +1,5 @@
 import { ClassNames } from '@emotion/react'
+import { GetServerSideProps } from 'next'
 import classNames from 'classnames'
 import { Dropdown } from 'flowbite-react'
 import Cookies from 'js-cookie'
@@ -10,9 +11,10 @@ import CardMangerProduct from '../../src/component/CardMangerProduct'
 import Icon from '../../src/component/Icon'
 import Header from '../../src/layout/Header'
 import { fetchCategories, fetchProducts } from '../../src/redux/slice/productSlice'
+import Footer from '../../src/layout/Footer'
 // import { Badge, Button, Dropdown } from 'flowbite-react'
 
-const index = () => {
+const index = ({ orderList }: any) => {
 
     const dispatch = useDispatch();
     const [pageProduct, setPageProduct] = useState<boolean>(true);
@@ -26,22 +28,6 @@ const index = () => {
         dispatch((fetchProducts()))
         dispatch((fetchCategories()))
     }, [])
-
-    useEffect(() => {
-        fetch('http://localhost:8000/store/order'
-            , {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Token ' + Cookies.get('token')
-                }
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
-    }, []);
-    console.log(productList)
-
 
     return (
         <div>
@@ -66,6 +52,7 @@ const index = () => {
 
                         {pageProduct ?
                             (
+                                <>
                                 <table className='w-full'>
                                     <thead className='rounded'>
                                         <tr className='bg-mywhite'>
@@ -77,8 +64,8 @@ const index = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {productList?.map((product: any) => (
-                                            <tr className='odd:bg-myprimary-200 odd:bg-opacity-25 hover:border-b-myprimary-200 border-2 border-transparent cursor-context-menu' onClick={() => {
+                                        {productList?.map((product: any, index: number) => (
+                                            <tr key={index} className='odd:bg-myprimary-200 odd:bg-opacity-25 hover:border-b-myprimary-200 border-2 border-transparent cursor-context-menu' onClick={() => {
                                                 setProductId(product.id)
                                             }}>
                                                 <td className='w-3/12 text-right'>{
@@ -98,19 +85,33 @@ const index = () => {
                                         ))}
                                     </tbody>
                                 </table>
+                                <button className='absolute bg-myprimary-200 hover:bg-myprimary-100 text-white font-bold py-2 px-4 rounded-full top-[560px] left-10' onClick={() => {}}>+</button>
+                                </>
                             ) : (
                                 <table className='w-full'>
                                     <thead className='rounded'>
                                         <tr className='bg-mywhite'>
-                                            <td className='w-1/12 text-center'>شماره سفارش</td>
-                                            <td className='w-1/12 text-center'>کاربر</td>
+                                            <td className='w-2/12 text-center'>وضعیت</td>
                                             <td className='w-4/12 text-center'>تاریخ سفارش</td>
                                             <td className='w-2/12 text-center'>شماره آدرس</td>
-                                            <td className='w-3/12 text-center'>وضعیت</td>
+                                            <td className='w-1/12 text-center'>کاربر</td>
+                                            <td className='w-2/12 text-center'>شماره سفارش</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        {orderList?.map((order: any, index: number) => (
+                                            <tr key={index} className='odd:bg-myprimary-200 odd:bg-opacity-25 hover:border-b-myprimary-200 border-2 border-transparent cursor-context-menu' onClick={() => {
+                                                setOrder(order)
+                                            }}>
+                                                <td className='w-2/12 text-center'>{order?.status}</td>
+                                                <td className='w-4/12 text-center'>{
+                                                    (order?.created).split('T')[0]
+                                                }</td>
+                                                <td className='w-2/12 text-center'>{order?.address}</td>
+                                                <td className='w-1/12 text-center'>{order?.user}</td>
+                                                <td className='w-2/12 text-center'>{order?.id}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             )}
@@ -145,16 +146,43 @@ const index = () => {
                                 productList?.find((product: any) => product.id === productId)
                             } />
                         ) : (
-                            <CardMangerOrder id={productId} />
+                            <CardMangerOrder order={order} />
                         )
                     }
 
                 </section>
             </main>
+            <Footer/>
         </div>
     )
 }
 
 export default index
+
+export async function getServerSideProps(context: any) {
+
+    let list: any
+    console.log(Cookies.get('token'))
+    const token = (context.req.headers.cookie.split('=')[1]).split(';')[0]
+
+    await fetch('http://localhost:8000/store/order'
+        , {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + token
+            }
+        }).then(response => response.json())
+        .then(data => {
+            list = data
+        }).catch(err => console.error(err));
+    return {
+        props: {
+            orderList: list
+        }
+    }
+}
+
+
 
 
