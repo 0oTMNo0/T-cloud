@@ -43,11 +43,11 @@ const index = ({ orderList }: any) => {
             </header>
 
 
-            <main className='bg-mybackground w-screen flex justify-center items-center p-8 gap-[1px]'>
+            <main className='bg-mybackground w-screen flex justify-center items-center p-8 gap-[1px] sm:flex-row flex-col-reverse'>
 
-                <section className='w-3/5  flex items-center justify-end flex-col h-[530px]'>
+                <section className='sm:w-3/5 w-full  flex items-center justify-end flex-col h-[530px]'>
 
-                    <div className=' absolute translate-y-[-260px]'>
+                    <div className='absolute translate-y-[-260px] hidden sm:block'>
                         <Icon />
                     </div>
                     <div className='h-[430px] bg-mywhite w-full overflow-y-scroll no-scrollbar rounded-l-md'>
@@ -122,7 +122,7 @@ const index = ({ orderList }: any) => {
                             )}
                     </div>
                 </section>
-                <section className='w-2/5'>
+                <section className='sm:w-2/5 w-full'>
 
 
 
@@ -157,7 +157,7 @@ const index = ({ orderList }: any) => {
 
                 </section>
             </main>
-            
+
             <MyModalAddProduct opened={openModal} onClose={(value: boolean) => { setOpenModal(value) }} />
             <Footer/>
         </div>
