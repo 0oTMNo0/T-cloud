@@ -7,7 +7,6 @@ interface CardMangerOrderProps {
 }
 const CardMangerOrder: FC<CardMangerOrderProps> = (props) => {
 
-    console.log(props.order)
 
     return (
         <article className='bg-mywhite rounded-br flex flex-col items-center p-4 h-[500px]'>

@@ -5,8 +5,8 @@ import { FaLinkedinIn , FaGithub , FaInstagram} from "react-icons/fa"
 
 const Footer = () => {
   return (
-    <div className='bg-mybackground'>
-      <footer>
+    
+      <footer className='bg-mybackground'>
         <div className='flex items-center justify-center flex-row-reverse'>
           <div className='w-full h-2 bg-myblack'></div>
           <div className='w-44 translate-y-16'>
@@ -234,7 +234,6 @@ const Footer = () => {
 
         </div>
       </footer>
-    </div>
   )
 }
 
