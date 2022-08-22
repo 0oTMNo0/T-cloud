@@ -267,15 +267,33 @@ const products = () => {
             </section>
 
 
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+            {/* <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
               <Dropdown label='جنسیت' inline={true} size="sm" >
                 <Dropdown.Item onClick={() => setFilterSex(true)}>مردانه</Dropdown.Item>
                 <Dropdown.Item onClick={() => setFilterSex(false)}>زنانه</Dropdown.Item>
               </Dropdown>
-            </section>
-
+            </section> */}
 
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+              <Menu width={80}>
+                <Menu.Target>
+                  <button className='flex gap-2 items-center text-xs sm:text-sm'>جنسیت<IoIosArrowDown /></button>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item>
+                    <button className='text-center w-full h-full' onClick={() => {setFilterSex(true)}}>مردانه</button>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <button className='text-center w-full h-full' onClick={() => setFilterSex(false)}>زنانه</button>
+                  </Menu.Item>
+                  </Menu.Dropdown>
+              </Menu>
+            </section>
+            {/* //////////////// */}
+
+          
+
+            {/* <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
               <Dropdown label='سایز' inline={true} size="sm">
                 {
                   allSize.map((size: string) => {
@@ -285,10 +303,31 @@ const products = () => {
                   })
                 }
               </Dropdown>
+            </section> */}
+
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+              <Menu width={80}>
+                <Menu.Target>
+                  <button className='flex gap-2 items-center text-xs sm:text-sm'>سایز<IoIosArrowDown /></button>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {
+
+                    allSize.map((size: string) => {
+                      if (size !== 'ALL') {
+                        return <Menu.Item>
+                          <button className='text-center w-full h-full' onClick={() => { addFilterSize(size) }}>{size}</button>
+                        </Menu.Item>
+                      }
+                    }
+                    )
+                  }
+                </Menu.Dropdown>
+              </Menu>
             </section>
 
             {/* filter brand by dropdown */}
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+            {/* <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
               <Dropdown label='برند' inline={true} size="sm">
                 {
                   allBrand?.map((item: string) => {
@@ -300,14 +339,32 @@ const products = () => {
                   })
                 }
               </Dropdown>
-            </section>
+            </section> */}
 
+
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+             <Menu width={200}>
+                <Menu.Target>
+                  <button className='flex gap-2 items-center text-xs sm:text-sm'>برند<IoIosArrowDown /></button>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {
+                    allBrand?.map((item: string) => {
+                      return (
+                        <Menu.Item>
+                          <button className='text-center w-full h-full' onClick={() => addFilterBrand(item)}>{item}</button>
+                        </Menu.Item>
+                      )})
+                  }
+                </Menu.Dropdown>
+              </Menu>
+            </section>
 
             {/* filter Category by dropdown */}
 
 
             
-            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+            {/* <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
               <Dropdown label='دسته بندی' inline={true} size="sm">
                 {
                   categoryList?.map((category: any) => {
@@ -317,7 +374,34 @@ const products = () => {
                   })
                 }
               </Dropdown>
+            </section> */}
+
+
+            <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
+              <Menu width={100}>
+                <Menu.Target>
+                  <button className='flex gap-2 items-center text-xs sm:text-sm'>دسته بندی<IoIosArrowDown /></button>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {
+                    categoryList?.map((category: any) => {
+                      return (
+                        <Menu.Item>
+                          <button className='text-center w-full h-full' onClick={() => {addFilterCategory(category.name)}}>{category.name}</button>
+                        </Menu.Item>
+                      )
+                    }
+                    )
+                  }
+                </Menu.Dropdown>
+              </Menu>
             </section>
+
+
+
+
+
+
 
           </div>
 

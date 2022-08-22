@@ -2,7 +2,8 @@ import { Dropdown } from 'flowbite-react'
 import produce from 'immer'
 import Cookies from 'js-cookie'
 import React, { FC, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts } from '../redux/slice/productSlice'
 
 interface Props {
     id: number | undefined
@@ -12,6 +13,7 @@ interface Props {
 const CardMangerProduct: FC<Props> = (props) => {
 
     const categoryList = useSelector((state: any) => state.product.category)
+    const dispatch = useDispatch()
     
     
     const categoryName = categoryList?.find((item: any) => item.id === props.product?.category)?.name
@@ -53,7 +55,7 @@ const CardMangerProduct: FC<Props> = (props) => {
             }
         }).then(response => response.json())
             .then(data => {
-                window.location.reload()
+                dispatch((fetchProducts()))
             }
             ).catch(err => console.error(err))
     }
@@ -82,8 +84,7 @@ const CardMangerProduct: FC<Props> = (props) => {
             })
         }).then(response => response.json())
             .then(data => {
-                window.location.reload()
-                // console.log(data)
+                dispatch((fetchProducts()))
             }
             ).catch(err => console.error(err))
     }

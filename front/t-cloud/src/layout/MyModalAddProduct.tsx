@@ -3,8 +3,9 @@ import { Toast } from 'flowbite-react'
 import Cookies from 'js-cookie'
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { MdError } from 'react-icons/md'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Icon from '../component/Icon'
+import { fetchProducts } from '../redux/slice/productSlice'
 
 type MyModaltype = {
     opened: boolean
@@ -15,6 +16,7 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
     const [opened, setOpened] = useState(false)
     const [main_image, setMainImage] = useState<File | null>()
     const [openNoti, setOpenNoti] = useState<boolean>(false)
+    const dispatch = useDispatch()
 
 
 
@@ -106,6 +108,7 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
                     setOpenNoti(true)
                 }
                 else {
+                    dispatch((fetchProducts()))
                     setOpened(false)
                     props.onClose()
                 }
