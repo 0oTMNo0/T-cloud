@@ -64,7 +64,6 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
             getBase64(main_image).then(base64 => {
                 if (typeof base64 === 'string') {
                     setMainImage64(base64)
-                    console.log(main_image64)
                 }
             })
         }

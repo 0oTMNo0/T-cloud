@@ -30,8 +30,7 @@ const CardMangerOrder: FC<CardMangerOrderProps> = (props) => {
     }
 
     function handleSaveSubmit(){
-        // console.log('copy',copyOrder)
-        // copyOrder.data[0].totalPrice =
+       
         fetch(`http://localhost:8000/store/order/${props.order.id}`, {
             method: 'PUT',
             headers: {
@@ -94,7 +93,7 @@ const CardMangerOrder: FC<CardMangerOrderProps> = (props) => {
                                 <p>{"شماره:"+product.product}</p>
                                 <p>{"سایز:"+product.data[0]?.size}</p>
                                 <div className='flex items-center'>تعداد:
-                                    <input type='number' className='border-b-2 border-t-0 border-x-0 border-myprimary-200 p-2 focus:border-myprimary-100 focus:ring-0 w-8 py-0' defaultValue={product.quantity} 
+                                    <input type='number' className='border-b-2 border-t-0 border-x-0 border-myprimary-200 p-2 focus:border-myprimary-100 focus:ring-0 w-14 py-0' defaultValue={product.quantity} 
                                     onChange={(e:any)=>{
                                         copyOrder.products[index].quantity = +e.target.value
                                     }}/>
