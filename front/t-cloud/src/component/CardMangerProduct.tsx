@@ -199,8 +199,7 @@ const CardMangerProduct: FC<Props> = (props) => {
                     </button>
                 </div>
             </form>
-
-
+            
         </article>
     )
 }

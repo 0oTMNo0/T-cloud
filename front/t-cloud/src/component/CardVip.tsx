@@ -22,13 +22,13 @@ type myCardProps = {
                 >
             <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded">
               <img src={props.url} alt={props.brand} className='object-cover object-center h-full'/>
-                <div className='text-mywhite bg-black bg-opacity-50 w-full translate-y-[-33px] h-32 px-2 py-1 group-hover:translate-y-[-75px] transition-all ease-in-out'>
+                <div className='text-xs sm:text-sm text-mywhite bg-black bg-opacity-50 w-full translate-y-[-33px] h-32 px-2 py-1 group-hover:translate-y-[-75px] transition-all ease-in-out'>
                   <div className='flex justify-between'>
                     <p className='text-yellow-300 font-medium'>{props.brand}</p>
                     <p>{props.price}MT</p>
                   </div>
-                  <div className='flex justify-center items-center'>
-                    <p>{props.label}</p>
+                  <div className='flex justify-center items-center mt-1 whitespace-nowrap'>
+                    <p>{props.label.slice(0,40)}...</p>
                      </div>
                     <div className='flex justify-between'>
                         <div className='flex gap-1 items-center'>

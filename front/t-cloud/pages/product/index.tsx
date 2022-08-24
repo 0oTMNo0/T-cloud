@@ -214,7 +214,7 @@ const products = () => {
       
       <Header />
 
-      <main className='bg-mybackground'>
+      <main className='bg-mybackground font-IR'>
         <div className='flex justify-between py-6 md:px-6'>
           <div className='flex gap-1 items-center hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10'>
             <Dropdown

@@ -68,7 +68,7 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main className='bg-mybackground pt-6'>
+      <main className='bg-mybackground pt-6 font-IR'>
         <div className='w-full lg:w-2/3 md:w-3/4 sm:w-4/5 mx-auto flex flex-col'>
           <MyCarousel />
           <div className=' translate-y-[-230%] self-center'>

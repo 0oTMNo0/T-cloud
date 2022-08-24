@@ -42,7 +42,7 @@ const index = ({ orderList,token }: any) => {
                 <Header />
 
 
-            <main className='bg-mybackground w-screen flex justify-center items-center p-8 gap-[1px] sm:flex-row flex-col-reverse'>
+            <main className='bg-mybackground w-screen flex justify-center items-center p-8 gap-[1px] sm:flex-row flex-col-reverse font-IR'>
 
                 <section className='sm:w-3/5 w-full  flex items-center justify-end flex-col h-[530px]'>
 

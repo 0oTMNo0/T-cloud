@@ -75,7 +75,7 @@ const id = () => {
 
 
   return (
-    <div>
+    <div className='font-IR'>
       <Header />
       <div className='flex flex-col-reverse sm:flex-row w-screen bg-mybackground py-5'>
         <div className='w-full sm:w-3/5 flex flex-col px-4 gap-4' dir='rtl'>

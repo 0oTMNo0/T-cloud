@@ -58,19 +58,17 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
     }
         , [props.opened])
 
-
-    function handlesubmit(e: any) {
-        e.preventDefault()
-
+    let myImages: any[] = []
+    useEffect(()=>{
         if (main_image) {
             getBase64(main_image).then(base64 => {
                 if (typeof base64 === 'string') {
                     setMainImage64(base64)
+                    console.log(main_image64)
                 }
             })
         }
         
-        let myImages: any[] = []
         if (images.length > 0) {
             images.map((item: any) => {
                 getBase64(item).then(base64 => {
@@ -80,9 +78,15 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
                 })
             })
         }
+    },[main_image,images])
 
 
+    function handlesubmit(e: any) {
+        e.preventDefault()
 
+        
+
+        console.log(main_image64)
         fetch('http://localhost:8000/store/product/', {
             method: 'POST',
             headers: {
@@ -97,17 +101,19 @@ const MyModalAddProduct: FC<MyModaltype> = (props) => {
                 slug: slug?.split(' ').join('-'),
                 featured: isMan,
                 extra_information: extraInfo,
-                image: main_image64,
+                mainImage: main_image64,
                 images: myImages,
                 options: sizeSelect,
                 remaining: quantity,
             })
         }).then(res => res.json())
             .then(data => {
-                if (data.detail) {
+                if (data.detail || data.status) {
                     setOpenNoti(true)
+                    console.log(data)
                 }
                 else {
+                    console.log(data)
                     dispatch((fetchProducts()))
                     setOpened(false)
                     props.onClose()

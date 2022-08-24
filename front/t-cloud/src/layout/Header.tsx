@@ -29,7 +29,7 @@ const Header = () => {
   // const mycookie = Cookies.get('token')
 
   return (
-    <header className='w-screen p-2 bg-myblack flex justify-between text-mywhite'>
+    <header className='w-screen p-2 bg-myblack flex justify-between text-mywhite font-IR'>
       <div className='group'>
         <button className='flex p-1 bg bg-myprimary-200 rounded-md gap-1 group'>
           <div className='bg-myprimary-100 p-1 rounded-md'>

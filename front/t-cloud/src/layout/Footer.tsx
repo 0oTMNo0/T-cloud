@@ -6,7 +6,7 @@ import { FaLinkedinIn , FaGithub , FaInstagram} from "react-icons/fa"
 const Footer = () => {
   return (
     
-      <footer className='bg-mybackground'>
+      <footer className='bg-mybackground font-IR'>
         <div className='flex items-center justify-center flex-row-reverse'>
           <div className='w-full h-2 bg-myblack'></div>
           <div className='w-44 translate-y-16'>

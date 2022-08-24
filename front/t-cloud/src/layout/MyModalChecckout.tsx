@@ -164,17 +164,17 @@ const MyModalChecckout: FC<MyModaltype> = (props) => {
       {
         props.totalPrice === myTotalPrice ?
           (
-            <div className="w-full flex flex-col text-center text-2xl">
+            <div className="w-full flex flex-col text-center text-2xl font-IR">
               <p>{'جمع کل:  ' + (myTotalPrice).toLocaleString('fa-IR') + 'ریال'}</p>
             </div>
           ) : (
-            <div className="w-full flex flex-col text-center text-2xl">
+            <div className="w-full flex flex-col text-center text-2xl font-IR">
               <p>{'جمع کل:  ' + (myTotalPrice).toLocaleString('fa-IR') + 'ریال'}</p>
               <p className='line-through text-lg text-red-600'>{(props.totalPrice).toLocaleString('fa-IR')}</p>
             </div>
           )
       }
-      <div>
+      <div className='font-IR'>
         <form dir='rtl' className='mt-8 p-4' onSubmit={loginform.onSubmit(handleSubmit)}>
           <div className='grid grid-cols-2 gap-4 mb-2'>
             <TextInput label="نام" placeholder="نام" {...loginform.getInputProps('name')}
