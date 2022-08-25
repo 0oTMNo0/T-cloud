@@ -75,7 +75,7 @@ const id = () => {
 
 
   return (
-    <div>
+    <div className='font-IR'>
       <Header />
       <div className='flex flex-col-reverse sm:flex-row w-screen bg-mybackground py-5'>
         <div className='w-full sm:w-3/5 flex flex-col px-4 gap-4' dir='rtl'>
@@ -188,10 +188,7 @@ const id = () => {
               }}
             }
           >افزودن به سبد خرید</Button>
-
-
-
-
+          
           <div className='flex justify-evenly w-full sm:w-3/4 md:w-2/4 lg:w-2/5'>
             <Tooltip content="ضمانت اصل بودن کالا">
               <Image src='/asset/securebrand.png' width={64} height={64} layout='fixed' />

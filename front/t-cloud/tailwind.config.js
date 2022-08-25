@@ -7,11 +7,14 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
+    fontFamily:{
+      IR:'IRANSans',
+    },
     extend: {
       colors: {
         myblack: "#232323",
         mywhite: "#fefefe",
-        mybackground: "#DEDFDE",
+        mybackground: "#f3f3f3",
         myprimary: {
           100: '#69369E',
           200: '#7951A8',

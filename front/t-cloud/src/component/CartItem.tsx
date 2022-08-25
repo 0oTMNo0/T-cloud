@@ -24,16 +24,19 @@ const CartItem = () => {
     const dispatch = useDispatch()
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [checkout, setCheckout] = useState<boolean>(false)
+    const [mycookie, setMyCookie] = useState<string | null | undefined>();
 
     
     const totalPrice = useMemo(() => {
         return cartList?.map((item: CartType) => item.price * item.quantity).reduce((a: number, b: number) => a + b, 0)
     }, [cartList])
 
-
-
-
-    const mycookie = Cookies.get('token')
+    
+    useEffect(() => {
+        setMyCookie(Cookies.get('token'))
+    }
+        , [])
+    // const mycookie = Cookies.get('token')
 
 
     return (
