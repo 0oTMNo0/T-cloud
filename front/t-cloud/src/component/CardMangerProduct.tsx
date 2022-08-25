@@ -28,8 +28,6 @@ const CardMangerProduct: FC<Props> = (props) => {
     const [sex, setSex] = useState<boolean | undefined>(props.product?.featured)
     const [categoryId, setCategoryId]= useState<number | undefined>(props.product?.category)
 
-
-
     useEffect(()=>{
         setName(props.product?.name)
         setDescription(props.product?.description)

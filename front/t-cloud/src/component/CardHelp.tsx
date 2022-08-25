@@ -18,7 +18,8 @@ type myCardProps = {
     const CardVip:FC<myCardProps> = (props) => {
         return (
                 <Link  href={`/product/${props.id}`}>
-            <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded">
+            <div className="bg-mywhite border-[1px] overflow-hidden group w-32 h-56 sm:w-52 sm:h-80">
+            {/* <div className="bg-mywhite border-[1px] border-myprimary-100 overflow-hidden group w-32 h-56 sm:w-52 sm:h-80 rounded"> */}
               <img src={props.url} alt={props.brand} className='object-cover object-center h-full'/>
                 <div className='text-xs sm:text-sm text-mywhite bg-black bg-opacity-50 w-full translate-y-[-33px] h-32 px-2 py-1 group-hover:translate-y-[-75px] transition-all ease-in-out'>
                   <div className='flex justify-between'>

@@ -14,7 +14,7 @@ module.exports = {
       colors: {
         myblack: "#232323",
         mywhite: "#fefefe",
-        mybackground: "#DEDFDE",
+        mybackground: "#f3f3f3",
         myprimary: {
           100: '#69369E',
           200: '#7951A8',
