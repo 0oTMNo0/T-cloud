@@ -168,7 +168,13 @@ export default index
 export async function getServerSideProps(context: any) {
 
     let list: any
-    const token = (context.req.headers.cookie.split('=')[3]).split(';')[0]
+    let token: any
+    if(context.req.headers.cookie.split('=')[3]){
+        token = (context.req.headers.cookie.split('=')[3]).split(';')[0]
+    }else
+    {
+        token = (context.req.headers.cookie.split('=')[1]).split(';')[0]
+    }
 
     await fetch('http://localhost:8000/store/order'
         , {

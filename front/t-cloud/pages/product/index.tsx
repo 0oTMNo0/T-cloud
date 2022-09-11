@@ -178,6 +178,7 @@ const products = () => {
     setFilterSize(size)
   }
 
+
   function addFilterCategory (category: any)  {
     let searchparam = new URLSearchParams(window.location.search)
     searchparam.delete('category')
@@ -202,7 +203,6 @@ const products = () => {
     fullmyDATA()
     setFilterBrand(brand)
   }
-
 
   return (
     <>
@@ -375,7 +375,6 @@ const products = () => {
                 }
               </Dropdown>
             </section> */}
-
 
             <section className='hover:border-myprimary-200 border-[1px] border-mybackground p-1 z-10 text-xs sm:text-sm'>
               <Menu width={100}>
